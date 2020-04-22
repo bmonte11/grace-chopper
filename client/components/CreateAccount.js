@@ -132,6 +132,7 @@ export default class CreateAccount extends React.Component {
             </button>
           </form>
         </div>
+        <a href="/auth/google">Sign-Up with Google</a>
       </div>
     )
   }
