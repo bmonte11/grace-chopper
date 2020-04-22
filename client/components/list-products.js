@@ -1,15 +1,16 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
-export const ListProducts = function(props) {
-  console.log(props)
+export const ListProducts = withRouter(function(props) {
   return props.products.map(product => (
     <div id={product.name} key={product.id}>
-      <Link to={`products/${product.id}`}>{product.name} </Link>
+      <div onClick={() => props.history.push(`/products/${product.id}`)}>
+        {product.name}{' '}
+      </div>
       {product.price} <img src={product.imageUrl} />
       <button type="submit" id="addToCart">
         Add to cart
       </button>
     </div>
   ))
-}
+})
