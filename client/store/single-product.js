@@ -12,7 +12,6 @@ const setSingleProduct = product => ({
 export const fetchSingleProduct = productId => {
   return async dispatch => {
     const response = await axios.get(`/api/products/${productId}`)
-    console.log('response in thunk: ', response)
     const product = response.data
     const action = setSingleProduct(product)
     dispatch(action)

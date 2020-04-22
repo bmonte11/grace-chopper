@@ -20,8 +20,8 @@ class SingleProduct extends Component {
   }
 
   async componentDidMount() {
-    console.log('mount')
     await this.props.getProduct(this.props.match.params.productId)
+    console.log(this.props)
   }
 
   changeQuantity(operation) {
@@ -43,6 +43,7 @@ class SingleProduct extends Component {
   }
 
   render() {
+    const {product} = this.props
     return (
       <div id="single-product">
         <div id="single-product-info">
@@ -53,8 +54,8 @@ class SingleProduct extends Component {
             </div>
           </div>
           <div id="single-product-info-right">
-            {/* <h2>{product.name}</h2> */}
-            {/* <h3>{product.price}</h3> */}
+            <h2>{product.name}</h2>
+            <h3>{`$${product.price / 100}`}</h3>
             <div id="single-product-addtocart">
               <div onClick={() => this.changeQuantity('decrement')}>-</div>
               <div>{this.state.quantityToAdd}</div>
@@ -63,7 +64,7 @@ class SingleProduct extends Component {
             </div>
           </div>
         </div>
-        {/* <div id="single-product-description">{product.description}</div> */}
+        <div id="single-product-description">{product.description}</div>
         <div id="single-product-reviews">
           Eventually, a list of reviews will render down here.
         </div>
@@ -73,7 +74,7 @@ class SingleProduct extends Component {
 }
 
 const mapState = state => ({
-  product: state.product
+  product: state.singleProduct
 })
 
 const mapDispatch = dispatch => ({
