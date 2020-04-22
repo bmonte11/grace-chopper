@@ -19,8 +19,9 @@ class SingleProduct extends Component {
     this.changeQuantity = this.changeQuantity.bind(this)
   }
 
-  componentDidMount() {
-    this.props.getProduct(this.props.match.params.productId)
+  async componentDidMount() {
+    console.log('mount')
+    await this.props.getProduct(this.props.match.params.productId)
   }
 
   changeQuantity(operation) {
@@ -52,8 +53,8 @@ class SingleProduct extends Component {
             </div>
           </div>
           <div id="single-product-info-right">
-            <h2>{dummyData.name}</h2>
-            <h3>{dummyData.price}</h3>
+            {/* <h2>{product.name}</h2> */}
+            {/* <h3>{product.price}</h3> */}
             <div id="single-product-addtocart">
               <div onClick={() => this.changeQuantity('decrement')}>-</div>
               <div>{this.state.quantityToAdd}</div>
@@ -62,7 +63,7 @@ class SingleProduct extends Component {
             </div>
           </div>
         </div>
-        <div id="single-product-description">{dummyData.description}</div>
+        {/* <div id="single-product-description">{product.description}</div> */}
         <div id="single-product-reviews">
           Eventually, a list of reviews will render down here.
         </div>

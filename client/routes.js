@@ -15,7 +15,7 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-    return <Route component={SingleProduct} />
+    return <Route path="/products/:productId" component={SingleProduct} />
   }
 }
 
