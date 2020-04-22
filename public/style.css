@@ -19,3 +19,35 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#single-product {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  justify-content: center;
+}
+
+#single-product-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#single-product-addtocart {
+  display: flex;
+  flex-direction: row;
+}
+
+#single-product-addtocart div {
+  margin: auto 5px;
+}
+
+.add-to-cart-button {
+  border: solid 1px;
+  padding: 3px;
+}
+
+#single-product-description {
+  width: 800px;
+  margin: 30px auto;
+}
