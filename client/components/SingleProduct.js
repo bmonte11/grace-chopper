@@ -48,9 +48,8 @@ class SingleProduct extends Component {
       <div id="single-product">
         <div id="single-product-info">
           <div id="single-product-info-left">
-            <div>
-              <div>Image will go here</div>
-              {/* <img src={product.photo} /> */}
+            <div id="single-product-image-container">
+              <img id="single-product-image" src={product.photo} />
             </div>
           </div>
           <div id="single-product-info-right">
