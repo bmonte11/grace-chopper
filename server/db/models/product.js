@@ -27,7 +27,7 @@ const Product = db.define('product', {
   },
   photo: {
     type: Sequelize.STRING,
-    defaultValue: 'https://cdn.cutleryandmore.com/products/large/34250.jpg'
+    defaultValue: '/images/default-knife.jpg'
   }
 })
 
