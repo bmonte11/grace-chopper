@@ -3,9 +3,11 @@ const {Product} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
+  console.log('hitting the products route')
   try {
     const products = await Product.findAll({})
-    res.json(products.data)
+    console.log(products)
+    res.json(products)
   } catch (err) {
     next(err)
   }
