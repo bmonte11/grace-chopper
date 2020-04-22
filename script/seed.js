@@ -92,7 +92,8 @@ const makeFakeReviews = num => {
   for (let i = 0; i < num; i++) {
     fakeReviews.push({
       content: faker.lorem.paragraph(),
-      rating: getRandomInt(0, 5)
+      rating: getRandomInt(0, 5),
+      title: faker.lorem.words()
     })
   }
 }
