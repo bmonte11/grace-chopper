@@ -42,10 +42,11 @@ if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
       // const imgUrl = profile.photos[0].value
       const firstName = profile.name.givenName
       const lastName = profile.name.familyName
+      const registered = true
 
       User.findOrCreate({
         where: {googleId},
-        defaults: {email, firstName, lastName},
+        defaults: {email, firstName, lastName, registered},
         registered: true
       })
         .then(([user]) => done(null, user))

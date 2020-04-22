@@ -1,17 +1,138 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Order, Product, Item, Review} = require('../server/db/models')
+const faker = require('faker')
 
-async function seed() {
+const fakeUsers = []
+const fakeOrders = []
+const fakeProducts = []
+const fakeItems = []
+const fakeReviews = []
+
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+// const getRandomPrice = (min, max) => {
+//   min = Math.ceil(min * 100)
+//   max = Math.floor(max * 100)
+//   return Math.floor(Math.random() * (max - min + 1)) / 100
+// }
+
+const pickRandomCategory = () => {
+  const num = getRandomInt(1, 4)
+  if (num === 1) {
+    return 'Utility'
+  } else if (num === 2) {
+    return 'Chef'
+  } else if (num === 2) {
+    return 'Boning'
+  } else {
+    return 'Other'
+  }
+}
+
+const pickRandomOrigin = () => {
+  const num = getRandomInt(1, 3)
+  if (num === 1) {
+    return 'Western'
+  } else if (num === 2) {
+    return 'Japanese'
+  } else {
+    return 'Other'
+  }
+}
+
+const pickRandomStatus = () => {
+  const num = getRandomInt(1, 3)
+  if (num === 1) {
+    return 'in cart'
+  } else if (num === 2) {
+    return 'shipping'
+  } else {
+    return 'completed'
+  }
+}
+
+const makeFakeOrders = num => {
+  for (let i = 0; i < num; i++) {
+    fakeOrders.push({
+      status: pickRandomStatus()
+    })
+  }
+}
+
+const makeFakeProducts = num => {
+  for (let i = 0; i < num; i++) {
+    fakeProducts.push({
+      name: faker.commerce.productName() + ' Knife',
+      description: faker.company.catchPhrase(),
+      quantity: getRandomInt(1, 20),
+      price: getRandomInt(30, 1000),
+      category: pickRandomCategory(),
+      origin: pickRandomOrigin(),
+      photo: 'https://cdn.cutleryandmore.com/products/large/34250.jpg'
+    })
+  }
+}
+
+const makeFakeItems = num => {
+  for (let i = 0; i < num; i++) {
+    fakeItems.push({
+      salePrice: getRandomInt(30, 1000),
+      quantity: getRandomInt(1, 20)
+    })
+  }
+}
+
+const makeFakeReviews = num => {
+  for (let i = 0; i < num; i++) {
+    fakeReviews.push({
+      content: faker.lorem.paragraph(),
+      rating: getRandomInt(0, 5)
+    })
+  }
+}
+
+const makeFakeUsers = num => {
+  for (let i = 0; i < num; i++) {
+    fakeUsers.push({
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email()
+    })
+  }
+}
+
+makeFakeOrders(10)
+makeFakeProducts(10)
+makeFakeItems(10)
+makeFakeReviews(10)
+makeFakeUsers(10)
+
+// console.log(fakeOrders);
+// console.log(fakeProducts);
+// console.log(fakeItems);
+// console.log(fakeReviews);
+// console.log(fakeUsers)
+
+async function sampleSeed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
+  const orders = await Order.bulkCreate(fakeOrders)
+  const products = await Product.bulkCreate(fakeProducts)
+  const items = await Item.bulkCreate(fakeItems)
+  const reviews = await Review.bulkCreate(fakeReviews)
+  const users = await User.bulkCreate(fakeUsers)
 
+  console.log(`seeded ${orders.length} orders`)
+  console.log(`seeded ${products.length} products`)
+  console.log(`seeded ${items.length} items`)
+  console.log(`seeded ${reviews.length} reviews`)
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
@@ -19,10 +140,10 @@ async function seed() {
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.
-async function runSeed() {
+async function runSampleSeed() {
   console.log('seeding...')
   try {
-    await seed()
+    await sampleSeed()
   } catch (err) {
     console.error(err)
     process.exitCode = 1
@@ -37,8 +158,8 @@ async function runSeed() {
 // `Async` functions always return a promise, so we can use `catch` to handle
 // any errors that might occur inside of `seed`.
 if (module === require.main) {
-  runSeed()
+  runSampleSeed()
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
+module.exports = sampleSeed
