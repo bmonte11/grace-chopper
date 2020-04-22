@@ -108,9 +108,12 @@ const makeFakeUsers = num => {
 }
 
 makeFakeOrders(10)
+// userId
 makeFakeProducts(10)
 makeFakeItems(10)
+// productId orderId
 makeFakeReviews(10)
+// userId productId
 makeFakeUsers(10)
 
 // console.log(fakeOrders);
@@ -119,7 +122,7 @@ makeFakeUsers(10)
 // console.log(fakeReviews);
 // console.log(fakeUsers)
 
-async function sampleSeed() {
+async function Seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
@@ -128,6 +131,32 @@ async function sampleSeed() {
   const items = await Item.bulkCreate(fakeItems)
   const reviews = await Review.bulkCreate(fakeReviews)
   const users = await User.bulkCreate(fakeUsers)
+
+  await Promise.all(
+    orders.map((order, i) => {
+      return order.setUser(users[i])
+    })
+  )
+  await Promise.all(
+    items.map((item, i) => {
+      return item.setOrder(orders[i])
+    })
+  )
+  await Promise.all(
+    items.map((item, i) => {
+      return item.setProduct(products[i])
+    })
+  )
+  await Promise.all(
+    reviews.map((review, i) => {
+      return review.setUser(users[i])
+    })
+  )
+  await Promise.all(
+    reviews.map((review, i) => {
+      return review.setProduct(products[i])
+    })
+  )
 
   console.log(`seeded ${orders.length} orders`)
   console.log(`seeded ${products.length} products`)
@@ -140,16 +169,18 @@ async function sampleSeed() {
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.
-async function runSampleSeed() {
+async function runSeed() {
   console.log('seeding...')
   try {
-    await sampleSeed()
+    await Seed()
   } catch (err) {
     console.error(err)
     process.exitCode = 1
   } finally {
     console.log('closing db connection')
+
     await db.close()
+
     console.log('db connection closed')
   }
 }
@@ -158,8 +189,8 @@ async function runSampleSeed() {
 // `Async` functions always return a promise, so we can use `catch` to handle
 // any errors that might occur inside of `seed`.
 if (module === require.main) {
-  runSampleSeed()
+  runSeed()
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = sampleSeed
+module.exports = Seed
