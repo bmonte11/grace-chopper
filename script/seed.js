@@ -116,7 +116,12 @@ makeFakeReviews(10)
 // userId productId
 makeFakeUsers(10)
 
-// console.log(fakeOrders);
+// fakeOrders.map((order) => {
+// 	order.userId = getRandomInt(1, fakeOrders.length);
+// });
+
+console.log(fakeOrders)
+
 // console.log(fakeProducts);
 // console.log(fakeItems);
 // console.log(fakeReviews);
@@ -131,6 +136,10 @@ async function sampleSeed() {
   const items = await Item.bulkCreate(fakeItems)
   const reviews = await Review.bulkCreate(fakeReviews)
   const users = await User.bulkCreate(fakeUsers)
+
+  await orders.forEach(order => {
+    order.setUser(users[getRandomInt(0, users.length - 1)])
+  })
 
   console.log(`seeded ${orders.length} orders`)
   console.log(`seeded ${products.length} products`)
@@ -152,7 +161,9 @@ async function runSampleSeed() {
     process.exitCode = 1
   } finally {
     console.log('closing db connection')
-    await db.close()
+    setTimeout(() => {
+      db.close()
+    }, 5000)
     console.log('db connection closed')
   }
 }
