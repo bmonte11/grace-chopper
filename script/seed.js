@@ -137,8 +137,13 @@ async function sampleSeed() {
   const reviews = await Review.bulkCreate(fakeReviews)
   const users = await User.bulkCreate(fakeUsers)
 
+  await items.forEach(item => {
+    item.setOrder(orders[getRandomInt(0, orders.length)])
+    item.setProduct(products[getRandomInt(0, products.length)])
+  })
+
   await orders.forEach(order => {
-    order.setUser(users[getRandomInt(0, users.length - 1)])
+    order.setUser(users[getRandomInt(1, users.length)])
   })
 
   console.log(`seeded ${orders.length} orders`)
