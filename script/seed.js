@@ -74,7 +74,7 @@ const makeFakeProducts = num => {
       price: getRandomInt(30, 1000),
       category: pickRandomCategory(),
       origin: pickRandomOrigin(),
-      photo: 'https://cdn.cutleryandmore.com/products/large/34250.jpg'
+      photo: '/images/default-knife.jpg'
     })
   }
 }
