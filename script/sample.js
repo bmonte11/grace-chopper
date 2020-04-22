@@ -2,11 +2,11 @@ const db = require('../server/db')
 const {User, Order, Product, Item, Review} = require('../server/db/models')
 const faker = require('faker')
 
-const fakerUsers = []
-const fakerOrders = []
-const fakerProducts = []
-const fakerItems = []
-const fakerReviews = []
+const fakeUsers = []
+const fakeOrders = []
+const fakeProducts = []
+const fakeItems = []
+const fakeReviews = []
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min)
@@ -38,9 +38,28 @@ const pickRandomOrigin = () => {
   }
 }
 
+const pickRandomStatus = () => {
+  const num = getRandomInt(1, 3)
+  if (num === 1) {
+    return 'in cart'
+  } else if (num === 2) {
+    return 'shipping'
+  } else {
+    return 'completed'
+  }
+}
+
+const makeFakeOrders = num => {
+  for (let i = 0; i < num; i++) {
+    fakeOrders.push({
+      status: pickRandomStatus()
+    })
+  }
+}
+
 const makeFakeProducts = num => {
   for (let i = 0; i < num; i++) {
-    fakerProducts.push({
+    fakeProducts.push({
       name: faker.commerce.productName() + ' Knife',
       description: faker.company.catchPhrase(),
       quantity: getRandomInt(1, 20),
@@ -52,4 +71,15 @@ const makeFakeProducts = num => {
   }
 }
 
+const makeFakeItems = num => {
+  for (let i = 0; i < num; i++) {
+    fakeItems.push({
+      salePrice: getRandomInt(30, 2000),
+      quantity: getRandomInt(1, 20)
+    })
+  }
+}
+
+makeFakeOrders(10)
 makeFakeProducts(10)
+makeFakeItems(10)
