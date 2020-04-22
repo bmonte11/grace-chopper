@@ -7,13 +7,10 @@ export const setProducts = products => {
 }
 
 export function fetchProducts() {
-  console.log('in the thunk')
   return async function(dispatch) {
     try {
       const result = await axios.get('/api/products')
-      dispatch(
-        setProducts([{id: 1, name: 'coolknife', imageUrl: 'google.com'}])
-      )
+      dispatch(setProducts(result.data))
     } catch (err) {
       console.log(err)
     }
