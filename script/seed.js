@@ -120,14 +120,13 @@ makeFakeUsers(10)
 // 	order.userId = getRandomInt(1, fakeOrders.length);
 // });
 
-console.log(fakeOrders)
-
+// console.log(fakeOrders);
 // console.log(fakeProducts);
 // console.log(fakeItems);
 // console.log(fakeReviews);
 // console.log(fakeUsers)
 
-async function sampleSeed() {
+async function Seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
@@ -137,13 +136,44 @@ async function sampleSeed() {
   const reviews = await Review.bulkCreate(fakeReviews)
   const users = await User.bulkCreate(fakeUsers)
 
-  await items.forEach(item => {
-    item.setOrder(orders[getRandomInt(0, orders.length)])
-    item.setProduct(products[getRandomInt(0, products.length)])
+  // await Promise.all(
+  // 	orders.map((order, i) => {
+  // 		return order.setUser(users[i]);
+  // 	})
+  // );
+  // await Promise.all(
+  // 	items.map((item, i) => {
+  // 		return item.setOrder(orders[i]);
+  // 	})
+  // );
+  // await Promise.all(
+  // 	items.map((item, i) => {
+  // 		return item.setProduct(users[i]);
+  // 	})
+  // );
+  // await Promise.all(
+  // 	reviews.map((review, i) => {
+  // 		return review.setUser(users[i]);
+  // 	})
+  // );
+  // await Promise.all(
+  // 	reviews.map((review, i) => {
+  // 		return review.setProduct(users[i]);
+  // 	})
+  // );
+
+  orders.forEach(async (order, i) => {
+    await order.setUser(users[i])
   })
 
-  await orders.forEach(order => {
-    order.setUser(users[getRandomInt(1, users.length)])
+  items.forEach(async (item, i) => {
+    await item.setOrder(orders[i])
+    await item.setProduct(products[i])
+  })
+
+  reviews.forEach(async (review, i) => {
+    await review.setUser(users[i])
+    await review.setProduct(products[i])
   })
 
   console.log(`seeded ${orders.length} orders`)
@@ -157,18 +187,20 @@ async function sampleSeed() {
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.
-async function runSampleSeed() {
+async function runSeed() {
   console.log('seeding...')
   try {
-    await sampleSeed()
+    await Seed()
   } catch (err) {
     console.error(err)
     process.exitCode = 1
   } finally {
     console.log('closing db connection')
+
     setTimeout(() => {
       db.close()
     }, 5000)
+
     console.log('db connection closed')
   }
 }
@@ -177,8 +209,8 @@ async function runSampleSeed() {
 // `Async` functions always return a promise, so we can use `catch` to handle
 // any errors that might occur inside of `seed`.
 if (module === require.main) {
-  runSampleSeed()
+  runSeed()
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = sampleSeed
+module.exports = Seed
