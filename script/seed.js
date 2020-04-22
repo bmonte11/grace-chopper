@@ -116,10 +116,6 @@ makeFakeReviews(10)
 // userId productId
 makeFakeUsers(10)
 
-// fakeOrders.map((order) => {
-// 	order.userId = getRandomInt(1, fakeOrders.length);
-// });
-
 // console.log(fakeOrders);
 // console.log(fakeProducts);
 // console.log(fakeItems);
@@ -136,45 +132,31 @@ async function Seed() {
   const reviews = await Review.bulkCreate(fakeReviews)
   const users = await User.bulkCreate(fakeUsers)
 
-  // await Promise.all(
-  // 	orders.map((order, i) => {
-  // 		return order.setUser(users[i]);
-  // 	})
-  // );
-  // await Promise.all(
-  // 	items.map((item, i) => {
-  // 		return item.setOrder(orders[i]);
-  // 	})
-  // );
-  // await Promise.all(
-  // 	items.map((item, i) => {
-  // 		return item.setProduct(users[i]);
-  // 	})
-  // );
-  // await Promise.all(
-  // 	reviews.map((review, i) => {
-  // 		return review.setUser(users[i]);
-  // 	})
-  // );
-  // await Promise.all(
-  // 	reviews.map((review, i) => {
-  // 		return review.setProduct(users[i]);
-  // 	})
-  // );
-
-  orders.forEach(async (order, i) => {
-    await order.setUser(users[i])
-  })
-
-  items.forEach(async (item, i) => {
-    await item.setOrder(orders[i])
-    await item.setProduct(products[i])
-  })
-
-  reviews.forEach(async (review, i) => {
-    await review.setUser(users[i])
-    await review.setProduct(products[i])
-  })
+  await Promise.all(
+    orders.map((order, i) => {
+      return order.setUser(users[i])
+    })
+  )
+  await Promise.all(
+    items.map((item, i) => {
+      return item.setOrder(orders[i])
+    })
+  )
+  await Promise.all(
+    items.map((item, i) => {
+      return item.setProduct(products[i])
+    })
+  )
+  await Promise.all(
+    reviews.map((review, i) => {
+      return review.setUser(users[i])
+    })
+  )
+  await Promise.all(
+    reviews.map((review, i) => {
+      return review.setProduct(products[i])
+    })
+  )
 
   console.log(`seeded ${orders.length} orders`)
   console.log(`seeded ${products.length} products`)
@@ -197,9 +179,7 @@ async function runSeed() {
   } finally {
     console.log('closing db connection')
 
-    setTimeout(() => {
-      db.close()
-    }, 5000)
+    await db.close()
 
     console.log('db connection closed')
   }
