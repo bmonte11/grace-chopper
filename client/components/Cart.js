@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import {CartItem} from './CartItem'
+import {fetchCart} from '../store/cart'
+import {connect} from 'react-redux'
 const dummyData = [
   {
     id: 1,
@@ -124,12 +126,14 @@ const dummyData = [
   }
 ]
 
-export default class Cart extends React.Component {
+class Cart extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
-  componentDidMount() {}
+  async componentDidMount() {
+    await this.props.getCart()
+  }
   handleChange() {}
   handleSubmit() {}
   render() {
@@ -144,14 +148,31 @@ export default class Cart extends React.Component {
         <div className="total">
           This is the calculation for the total price{' '}
         </div>
+        <button
+          type="button"
+          onClick={async () => {
+            await axios.get('/api/orders/cart')
+          }}
+        >
+          {' '}
+          On Click
+        </button>
         <button type="submit">Checkout</button>
       </div>
     )
   }
 }
 
-// mapStateToProps = (state) => {
-//   return
-// }
+const mapStateToProps = state => {
+  return {
+    state: state.cart
+  }
+}
 
-// mapDispatchToProps = (dispatch) => {}
+const mapDispatchToProps = dispatch => {
+  return {
+    getCart: () => dispatch(fetchCart())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
