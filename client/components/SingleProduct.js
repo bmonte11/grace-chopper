@@ -35,6 +35,8 @@ class SingleProduct extends Component {
     }
   }
 
+  addToCart() {}
+
   render() {
     const {product} = this.props
     return (
@@ -71,6 +73,7 @@ class SingleProduct extends Component {
 const mapState = state => ({
   product: state.singleProduct,
   reviews: state.singleProductReviews
+  // cart: state.cart
 })
 
 const mapDispatch = dispatch => ({
