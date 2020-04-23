@@ -49,7 +49,7 @@ const pickRandomOrigin = () => {
 const pickRandomStatus = () => {
   const num = getRandomInt(1, 3)
   if (num === 1) {
-    return 'in cart'
+    return 'cart'
   } else if (num === 2) {
     return 'shipping'
   } else {

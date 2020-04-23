@@ -49,7 +49,9 @@ if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
         defaults: {email, firstName, lastName, registered},
         registered: true
       })
-        .then(([user]) => done(null, user))
+        .then(([user]) => {
+          return done(null, user)
+        })
         .catch(done)
     }
   )
