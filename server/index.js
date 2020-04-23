@@ -57,11 +57,17 @@ const createApp = () => {
       secret: process.env.SESSION_SECRET || 'my best friend is Cody',
       store: sessionStore,
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: true
     })
   )
   app.use(passport.initialize())
   app.use(passport.session())
+  // app.use((req, res, next) => {
+  //   //if not user, empty cart
+  //   //if cart exists, move on
+  //   //if user, load cart from order
+  //   req.session.cart = {}
+  // })
 
   // auth and api routes
   app.use('/auth', require('./auth'))
