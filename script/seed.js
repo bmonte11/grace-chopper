@@ -70,7 +70,7 @@ const makeFakeProducts = num => {
     fakeProducts.push({
       name: faker.commerce.productName() + ' Knife',
       description: faker.company.catchPhrase(),
-      quantity: getRandomInt(1, 20),
+      stock: getRandomInt(1, 20),
       price: getRandomInt(30, 1000),
       category: pickRandomCategory(),
       origin: pickRandomOrigin(),
