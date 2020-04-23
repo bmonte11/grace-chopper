@@ -19,6 +19,7 @@ router.get('/:productId', async (req, res, next) => {
     next(error)
   }
 })
+
 router.put('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId)
