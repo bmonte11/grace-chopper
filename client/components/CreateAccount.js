@@ -23,6 +23,7 @@ export default class CreateAccount extends React.Component {
   async handleSubmit() {
     event.preventDefault()
     try {
+      // this should be wrapped in a thunk
       await axios.post('/api/users', {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -31,7 +32,7 @@ export default class CreateAccount extends React.Component {
         password: this.state.password,
         registered: true
       })
-      await this.setState({
+      this.setState({
         firstName: '',
         lastName: '',
         email: '',

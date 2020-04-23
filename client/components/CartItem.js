@@ -1,5 +1,5 @@
 import React from 'react'
-import changeQuantity from '../utils/changeQuantity'
+// import changeQuantity from '../utils/changeQuantity'
 
 const CartItem = function(props) {
   return (
@@ -16,7 +16,6 @@ const CartItem = function(props) {
       <div>
         <button type="submit">Delete from Cart</button>
       </div>
-
       <hr />
     </div>
   )
