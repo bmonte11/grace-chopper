@@ -12,6 +12,10 @@ const Review = db.define('review', {
       min: 0,
       max: 5
     }
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 })
 

@@ -1,14 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/single-product'
-
-const dummyData = {
-  name: 'Knife I think',
-  description:
-    'A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife A knife ',
-  quantity: 99,
-  price: 99.99
-}
+import {fetchProductReviews} from '../store/single-product-reviews'
+import SingleReview from './SingleReview'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -20,17 +14,16 @@ class SingleProduct extends Component {
   }
 
   async componentDidMount() {
-    await this.props.getProduct(this.props.match.params.productId)
-    console.log(this.props)
+    const productId = this.props.match.params.productId
+    await this.props.getProduct(productId)
+    await this.props.getReviews(productId)
   }
 
   changeQuantity(operation) {
     const currentQuantity = this.state.quantityToAdd
-    console.log(this.state)
     switch (operation) {
       case 'increment':
         this.setState({quantityToAdd: currentQuantity + 1})
-        console.log(this.state)
         break
       case 'decrement':
         if (this.state.quantityToAdd > 1) {
@@ -65,7 +58,10 @@ class SingleProduct extends Component {
         </div>
         <div id="single-product-description">{product.description}</div>
         <div id="single-product-reviews">
-          Eventually, a list of reviews will render down here.
+          <h3>{`Reviews of ${product.name}`}</h3>
+          {this.props.reviews.map(review => (
+            <SingleReview key={review.id} review={review} />
+          ))}
         </div>
       </div>
     )
@@ -73,11 +69,13 @@ class SingleProduct extends Component {
 }
 
 const mapState = state => ({
-  product: state.singleProduct
+  product: state.singleProduct,
+  reviews: state.singleProductReviews
 })
 
 const mapDispatch = dispatch => ({
-  getProduct: id => dispatch(fetchSingleProduct(id))
+  getProduct: id => dispatch(fetchSingleProduct(id)),
+  getReviews: id => dispatch(fetchProductReviews(id))
 })
 
 export default connect(mapState, mapDispatch)(SingleProduct)
