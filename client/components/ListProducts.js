@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 
-export const ListProducts = withRouter(function(props) {
+export default withRouter(function(props) {
   return props.products.map(product => (
     <div id={product.name} key={product.id}>
       <div onClick={() => props.history.push(`/products/${product.id}`)}>

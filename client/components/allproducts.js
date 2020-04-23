@@ -1,15 +1,14 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
-import {ListProducts} from './list-products'
+import {ListProducts} from '.'
 
-class AllProducts extends React.Component {
+class AllProducts extends Component {
   componentDidMount() {
     this.props.getProducts()
   }
 
   render() {
-    console.log('props', this.props.products)
     return (
       <div clasname="products">
         <ListProducts products={this.props.products} />

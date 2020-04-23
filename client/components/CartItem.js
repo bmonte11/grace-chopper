@@ -1,8 +1,7 @@
 import React from 'react'
-import axios from 'axios'
 import changeQuantity from '../utils/changeQuantity'
 
-export const CartItem = function(props) {
+const CartItem = function(props) {
   return (
     <div>
       <div>{props.item.name}</div>
@@ -22,3 +21,5 @@ export const CartItem = function(props) {
     </div>
   )
 }
+
+export default CartItem

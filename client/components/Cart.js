@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {Component} from 'react'
 import axios from 'axios'
-import {CartItem} from './CartItem'
+import {CartItem} from '.'
 import {fetchCart} from '../store/cart'
 import {connect} from 'react-redux'
+
 const dummyData = [
   {
     id: 1,
@@ -126,16 +127,15 @@ const dummyData = [
   }
 ]
 
-class Cart extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
+class Cart extends Component {
   async componentDidMount() {
     await this.props.getCart()
   }
+
   handleChange() {}
+
   handleSubmit() {}
+
   render() {
     return (
       <div>

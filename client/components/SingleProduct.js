@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/single-product'
 import {fetchProductReviews} from '../store/single-product-reviews'
-import SingleReview from './SingleReview'
+import {SingleReview} from '.'
 
 class SingleProduct extends Component {
   constructor(props) {
