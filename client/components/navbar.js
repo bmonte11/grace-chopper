@@ -72,16 +72,24 @@ const Navbar = ({isLoggedIn}) => {
                   </NavLink>
                 </li>
               </ul>
-
+              <ul className="navbar-nav mr-auto" />
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink
+                  to="/orders"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Orders
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink
+                  to="/cart"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Cart
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
