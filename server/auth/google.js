@@ -66,7 +66,7 @@ if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
   router.get(
     '/callback',
     passport.authenticate('google', {
-      successRedirect: '/account',
+      successRedirect: '/',
       failureRedirect: '/login'
     })
   )
