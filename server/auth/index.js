@@ -32,7 +32,6 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-// make axios request to /api/logout
 router.post('/logout', (req, res) => {
   req.logout()
   req.session.destroy()

@@ -8,7 +8,7 @@ const Navbar = ({handleClick, isLoggedIn}) => {
   return (
     <React.Fragment>
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <NavLink to="/" className="navbar-brand" activeClassName="active">
             <i className="fas fa-utensils" />
           </NavLink>
