@@ -139,7 +139,7 @@ class Cart extends React.Component {
   render() {
     return (
       <div>
-        <h1>This is the Cart</h1>
+        <h1>Cart</h1>
         <div className="theCart">
           <ul className="list-group list-group-sm">
             {dummyData.map(product => {
@@ -152,9 +152,7 @@ class Cart extends React.Component {
           </ul>
         </div>
 
-        <div className="total">
-          This is the calculation for the total price{' '}
-        </div>
+        <div className="total">Gand Total </div>
         <button
           type="button"
           onClick={async () => {

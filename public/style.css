@@ -47,11 +47,17 @@ form div {
   padding: 3px;
 }
 
-.list-group-item {
+.list-item {
+  display: flex;
+  flex: row;
   font-size: 0.75em;
 }
 
-.card-img-top {
+.card {
+  width: 18rem;
+}
+
+.cart-card-img-top {
   max-width: 8em;
 }
 
