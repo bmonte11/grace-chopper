@@ -7,7 +7,10 @@ export default withRouter(function(props) {
       <div onClick={() => props.history.push(`/products/${product.id}`)}>
         {product.name}{' '}
       </div>
-      {product.price} <img src={product.imageUrl} />
+      {product.price}
+      <div className="all-products-photo">
+        <img src={product.photo} />
+      </div>
       <button type="submit" id="addToCart">
         Add to cart
       </button>
