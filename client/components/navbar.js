@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({isLoggedIn}) => {
+const Navbar = ({handleClick, isLoggedIn}) => {
   return (
     <React.Fragment>
       <div>
@@ -37,33 +37,46 @@ const Navbar = ({isLoggedIn}) => {
               </li>
             </ul>
             <ul className="navbar-nav mr-auto">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Account
-                  </a>
-                </li>
-              </ul>
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <NavLink
-                    to="/login"
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    Log In
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    to="/signup"
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    Sign Up
-                  </NavLink>
-                </li>
-              </ul>
+              {isLoggedIn ? (
+                <ul className="navbar-nav mr-auto">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#">
+                      Account
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link"
+                      href="#"
+                      onClick={() => handleClick()}
+                    >
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+              ) : (
+                <ul className="navbar-nav mr-auto">
+                  <li className="nav-item">
+                    <NavLink
+                      to="/login"
+                      className="nav-link"
+                      activeClassName="active"
+                    >
+                      Log In
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      to="/signup"
+                      className="nav-link"
+                      activeClassName="active"
+                    >
+                      Sign Up
+                    </NavLink>
+                  </li>
+                </ul>
+              )}
+
               <ul className="navbar-nav mr-auto" />
               <li className="nav-item">
                 <NavLink
