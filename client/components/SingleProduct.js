@@ -26,11 +26,16 @@ class SingleProduct extends Component {
     console.log(productId, 'product id we want?')
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault()
     try {
-      this.props.updateCart(this.props.match.params.productId)
-      console.log(this.props, 'after the axios request')
+      let orderItem = {
+        quantity: this.state.quantityToAdd,
+        productId: this.props.match.params.productId
+      }
+      this.props.updateCart(orderItem)
+
+      // console.log(this.props, 'after the axios request')
     } catch (err) {
       console.error(err)
     }
@@ -83,7 +88,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   getProduct: id => dispatch(fetchSingleProduct(id)),
   getReviews: id => dispatch(fetchProductReviews(id)),
-  updateCart: (orderId, productId) => dispatch(postToCart(orderId, productId))
+  updateCart: orderItem => dispatch(postToCart(orderItem))
 })
 
 export default connect(mapState, mapDispatch)(SingleProduct)

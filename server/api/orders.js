@@ -10,7 +10,16 @@ router.get('/cart', async (req, res, next) => {
           userId: req.user.id,
           status: 'cart'
         },
-        include: [Item],
+        include: [
+          {
+            model: Item,
+            include: [
+              {
+                model: Product
+              }
+            ]
+          }
+        ],
         defaults: {
           userId: req.user.id,
           status: 'cart'
@@ -36,9 +45,21 @@ router.post('/cart', async (req, res, next) => {
     console.log(req.session, 'back-end hide and seek')
     const newItem = await Item.create({
       orderId: req.session.cart[0].id,
-      productId: req.body.productId
+      productId: req.body.productId,
+      quantity: req.body.quantity
     })
     res.send(newItem)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/cart', async (req, res, next) => {
+  try {
+    console.log(req.body, 'what is req.body?!?!')
+    const item = await Item.findByPk(req.body.itemId)
+    await item.destroy()
+    res.status(204).send(item)
   } catch (err) {
     next(err)
   }

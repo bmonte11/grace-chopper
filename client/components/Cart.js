@@ -143,9 +143,9 @@ class Cart extends Component {
       <div>
         <h1>This is the Cart</h1>
         <div className="theCart">
-          {cart.items.map(product => {
-            // console.log(product, 'the mapped over product')
-            return <CartItem item={product} key={product.id} />
+          {cart.items.map(item => {
+            // console.log(item, 'the mapped over item')
+            return <CartItem item={item} key={item.id} />
           })}
         </div>
         <div className="total">

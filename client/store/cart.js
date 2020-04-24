@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const SET_CART = 'SET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_ITEM = 'REMOVE_ITEM'
 
 export const setCart = cart => {
   return {
@@ -30,15 +31,33 @@ export function fetchCart() {
   }
 }
 
-export function postToCart(productId) {
-  console.log(productId, 'productId in postToCart thunk')
+export function postToCart(orderItem) {
+  // console.log(productId, 'productId in postToCart thunk')
   return async function(dispatch) {
     try {
       const response = await axios.post('/api/orders/cart', {
-        productId: productId
+        productId: orderItem.productId,
+        quantity: orderItem.quantity
       })
       if (response.status === 200) {
         dispatch(addToCart(response.data))
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function removeItem(itemId) {
+  return async function(dispatch) {
+    try {
+      const response = await axios.delete('/api/orders/cart', {
+        data: {
+          itemId
+        }
+      })
+      if (response.status === 204) {
+        dispatch(fetchCart())
       }
     } catch (err) {
       console.log(err)
