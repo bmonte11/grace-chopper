@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
+const {isAdmin} = require('./utils')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -20,7 +21,7 @@ router.get('/:productId', async (req, res, next) => {
   }
 })
 
-router.put('/:productId', async (req, res, next) => {
+router.put('/:productId', isAdmin, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId)
     product.update(req.body)
@@ -30,7 +31,7 @@ router.put('/:productId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
     res.json(product)
@@ -39,7 +40,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:productId', async (req, res, next) => {
+router.delete('/:productId', isAdmin, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId)
     await product.destroy()
