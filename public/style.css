@@ -47,6 +47,11 @@ form div {
   padding: 3px;
 }
 
+.list-group list-group-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
 .list-item {
   display: flex;
   font-size: 0.75em;
