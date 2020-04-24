@@ -4,6 +4,8 @@ import {fetchSingleProduct} from '../store/single-product'
 import {fetchProductReviews} from '../store/single-product-reviews'
 import {SingleReview} from '.'
 import changeQuantity from '../utils/changeQuantity'
+import axios from 'axios'
+import {postToCart} from '../store/cart'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -16,8 +18,12 @@ class SingleProduct extends Component {
 
   async componentDidMount() {
     const productId = this.props.match.params.productId
+    console.log(this.props.match.params, 'is the order id here?')
     await this.props.getProduct(productId)
     await this.props.getReviews(productId)
+    await this.props.updateCart(this.props.cart.id, productId)
+    console.log(this.props.cart.id, 'order id we want?')
+    console.log(productId, 'product id we want?')
   }
 
   async handleSubmit(event) {
@@ -25,6 +31,9 @@ class SingleProduct extends Component {
     try {
       await this.props.cart.push(this.props.product)
       console.log(this.props, 'this is the props!')
+      let {data} = await axios.put('/api/orders/cart')
+      this.props.cart = data
+      console.log(this.props, 'after the axios request')
     } catch (err) {
       console.error(err)
     }
@@ -76,7 +85,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getProduct: id => dispatch(fetchSingleProduct(id)),
-  getReviews: id => dispatch(fetchProductReviews(id))
+  getReviews: id => dispatch(fetchProductReviews(id)),
+  updateCart: (orderId, productId) => dispatch(postToCart(orderId, productId))
 })
 
 export default connect(mapState, mapDispatch)(SingleProduct)

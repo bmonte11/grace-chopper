@@ -137,11 +137,13 @@ class Cart extends Component {
   handleSubmit() {}
 
   render() {
+    console.log(this.props.cart, 'the Cart props')
     return (
       <div>
         <h1>This is the Cart</h1>
         <div className="theCart">
-          {dummyData.map(product => {
+          {this.props.cart.map(product => {
+            console.log(product, 'the mapped over product')
             return <CartItem item={product} key={product.id} />
           })}
         </div>
@@ -165,7 +167,7 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
-    state: state.cart
+    cart: state.cart
   }
 }
 
