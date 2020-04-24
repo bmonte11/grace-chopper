@@ -10,7 +10,7 @@ const setSingleProductReviews = reviews => ({
 export const fetchProductReviews = productId => {
   return async dispatch => {
     try {
-      const response = await axios.get(`/api/reviews/products/${productId}`)
+      const response = await axios.get(`/api/products/${productId}/reviews`)
       const reviews = response.data
       const action = setSingleProductReviews(reviews)
       dispatch(action)
