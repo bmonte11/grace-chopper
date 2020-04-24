@@ -2,23 +2,20 @@ import React from 'react'
 import axios from 'axios'
 import changeQuantity from '../utils/changeQuantity'
 
-export const CartItem = function(props) {
+export const CartItem = function({item}) {
   return (
-    <div>
-      <div>{props.item.name}</div>
-      <div>Quantity: {props.item.quantity}</div>
-      <div>
-        <button type="button">Button to add to quantity</button>
+    <div className="card">
+      <img src={item.photo} className="card-img-top" alt="..." />
+      <div className="card-body">
+        <h5 className="card-title">{item.name}</h5>
+        <div className="card-text">Quantity: {item.quantity}</div>
+        <div className="total">
+          This is the calculation for the total price of this one item{' '}
+        </div>
+        <a href="#" className="btn btn-danger btn-sm">
+          Remove from Cart
+        </a>
       </div>
-      <div>Price: ${props.item.price}</div>
-      <div className="total">
-        This is the calculation for the total price of this one item{' '}
-      </div>
-      <div>
-        <button type="submit">Delete from Cart</button>
-      </div>
-
-      <hr />
     </div>
   )
 }

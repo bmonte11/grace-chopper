@@ -47,6 +47,14 @@ form div {
   padding: 3px;
 }
 
+.list-group-item {
+  font-size: 0.75em;
+}
+
+.card-img-top {
+  max-width: 8em;
+}
+
 #single-product-description {
   width: 800px;
   margin: 30px auto;

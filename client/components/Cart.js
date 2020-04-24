@@ -141,10 +141,17 @@ class Cart extends React.Component {
       <div>
         <h1>This is the Cart</h1>
         <div className="theCart">
-          {dummyData.map(product => {
-            return <CartItem item={product} key={product.id} />
-          })}
+          <ul className="list-group list-group-sm">
+            {dummyData.map(product => {
+              return (
+                <li className="list-group-item" key={product.id}>
+                  <CartItem item={product} />
+                </li>
+              )
+            })}
+          </ul>
         </div>
+
         <div className="total">
           This is the calculation for the total price{' '}
         </div>
