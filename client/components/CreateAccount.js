@@ -1,7 +1,5 @@
-//new Account stuff
 import React from 'react'
 import axios from 'axios'
-// import {Link} from 'react-router-dom'
 
 export default class CreateAccount extends React.Component {
   constructor(props) {
@@ -11,26 +9,21 @@ export default class CreateAccount extends React.Component {
       lastName: '',
       email: '',
       address: '',
-      registered: false,
-      isAdmin: false,
       password: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  async handleChange(event) {
-    try {
-      await this.setState({
-        [event.target.name]: event.target.value
-      })
-    } catch (err) {
-      console.error(err)
-    }
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   async handleSubmit() {
     event.preventDefault()
     try {
+      // this should be wrapped in a thunk
       await axios.post('/api/users', {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -39,7 +32,7 @@ export default class CreateAccount extends React.Component {
         password: this.state.password,
         registered: true
       })
-      await this.setState({
+      this.setState({
         firstName: '',
         lastName: '',
         email: '',

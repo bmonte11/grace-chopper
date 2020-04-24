@@ -9,10 +9,14 @@ const setSingleProductReviews = reviews => ({
 
 export const fetchProductReviews = productId => {
   return async dispatch => {
-    const response = await axios.get(`/api/reviews/products/${productId}`)
-    const reviews = response.data
-    const action = setSingleProductReviews(reviews)
-    dispatch(action)
+    try {
+      const response = await axios.get(`/api/reviews/products/${productId}`)
+      const reviews = response.data
+      const action = setSingleProductReviews(reviews)
+      dispatch(action)
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
