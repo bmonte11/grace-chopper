@@ -31,12 +31,12 @@ router.get('/cart', async (req, res, next) => {
 //Create an item in the item table with a matching orderID
 //Subtract x amount from the product table
 
-router.put('/cart', async (req, res, next) => {
+router.post('/cart', async (req, res, next) => {
   try {
-    console.log(req.params, 'back-end hide and seek')
+    console.log(req.session, 'back-end hide and seek')
     const newItem = await Item.create({
-      orderId: req.session.cart.id,
-      productId: req.params.productId
+      orderId: req.session.cart[0].id,
+      productId: req.body.productId
     })
     res.send(newItem)
   } catch (err) {

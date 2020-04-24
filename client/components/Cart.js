@@ -138,12 +138,13 @@ class Cart extends Component {
 
   render() {
     console.log(this.props.cart, 'the Cart props')
+    let cart = this.props.cart
     return (
       <div>
         <h1>This is the Cart</h1>
         <div className="theCart">
-          {this.props.cart.map(product => {
-            console.log(product, 'the mapped over product')
+          {cart.items.map(product => {
+            // console.log(product, 'the mapped over product')
             return <CartItem item={product} key={product.id} />
           })}
         </div>

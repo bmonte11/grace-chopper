@@ -21,7 +21,7 @@ class SingleProduct extends Component {
     console.log(this.props.match.params, 'is the order id here?')
     await this.props.getProduct(productId)
     await this.props.getReviews(productId)
-    await this.props.updateCart(this.props.cart.id, productId)
+    // await this.props.updateCart(this.props.cart.id, productId)
     console.log(this.props.cart.id, 'order id we want?')
     console.log(productId, 'product id we want?')
   }
@@ -29,10 +29,7 @@ class SingleProduct extends Component {
   async handleSubmit(event) {
     event.preventDefault()
     try {
-      await this.props.cart.push(this.props.product)
-      console.log(this.props, 'this is the props!')
-      let {data} = await axios.put('/api/orders/cart')
-      this.props.cart = data
+      this.props.updateCart(this.props.match.params.productId)
       console.log(this.props, 'after the axios request')
     } catch (err) {
       console.error(err)
