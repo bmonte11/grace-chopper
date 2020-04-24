@@ -12,7 +12,7 @@ export function fetchProducts() {
       const result = await axios.get('/api/products')
       dispatch(setProducts(result.data))
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 }

@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/single-product'
 import {fetchProductReviews} from '../store/single-product-reviews'
-import SingleReview from './SingleReview'
+import {SingleReview} from '.'
+import changeQuantity from '../utils/changeQuantity'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -10,29 +11,13 @@ class SingleProduct extends Component {
     this.state = {
       quantityToAdd: 1
     }
-    this.changeQuantity = this.changeQuantity.bind(this)
+    this.changeQuantity = changeQuantity.bind(this)
   }
 
   async componentDidMount() {
     const productId = this.props.match.params.productId
     await this.props.getProduct(productId)
     await this.props.getReviews(productId)
-  }
-
-  changeQuantity(operation) {
-    const currentQuantity = this.state.quantityToAdd
-    switch (operation) {
-      case 'increment':
-        this.setState({quantityToAdd: currentQuantity + 1})
-        break
-      case 'decrement':
-        if (this.state.quantityToAdd > 1) {
-          this.setState({quantityToAdd: currentQuantity - 1})
-        }
-        break
-      default:
-        break
-    }
   }
 
   render() {
