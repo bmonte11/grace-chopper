@@ -10,7 +10,7 @@ class AllProducts extends Component {
 
   render() {
     return (
-      <div clasname="products">
+      <div className="products">
         <ListProducts products={this.props.products} />
       </div>
     )

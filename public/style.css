@@ -49,12 +49,15 @@ form div {
 
 .list-item {
   display: flex;
-  flex: row;
   font-size: 0.75em;
 }
 
 .card {
   width: 18rem;
+}
+
+.card-title {
+  font-size: 1.5em;
 }
 
 .cart-card-img-top {
