@@ -20,8 +20,18 @@ class SingleProduct extends Component {
     await this.props.getReviews(productId)
   }
 
+  async handleSubmit(event) {
+    event.preventDefault()
+    try {
+      await this.props.cart.push(this.props.product)
+      console.log(this.props, 'this is the props!')
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   render() {
-    const {product} = this.props
+    const {product, cart} = this.props
     return (
       <div id="single-product">
         <div id="single-product-info">
@@ -37,7 +47,12 @@ class SingleProduct extends Component {
               <div onClick={() => this.changeQuantity('decrement')}>-</div>
               <div>{this.state.quantityToAdd}</div>
               <div onClick={() => this.changeQuantity('increment')}>+</div>
-              <div className="add-to-cart-button">Add To Cart</div>
+              <div
+                className="add-to-cart-button"
+                onClick={e => this.handleSubmit(e)}
+              >
+                Add To Cart
+              </div>
             </div>
           </div>
         </div>
@@ -55,8 +70,8 @@ class SingleProduct extends Component {
 
 const mapState = state => ({
   product: state.singleProduct,
-  reviews: state.singleProductReviews
-  // cart: state.cart
+  reviews: state.singleProductReviews,
+  cart: state.cart
 })
 
 const mapDispatch = dispatch => ({
