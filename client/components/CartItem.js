@@ -1,6 +1,5 @@
 import React from 'react'
-import axios from 'axios'
-import changeQuantity from '../utils/changeQuantity'
+// import changeQuantity from '../utils/changeQuantity'
 
 export const CartItem = function({item}) {
   return (
@@ -17,3 +16,5 @@ export const CartItem = function({item}) {
     </div>
   )
 }
+
+export default CartItem

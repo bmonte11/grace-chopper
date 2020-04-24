@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 
-export const ListProducts = withRouter(function({products, history}) {
+export default withRouter(function({products, history}) {
   return (
     <ul className="list-group list-group-horizontal">
       {products.map(product => (

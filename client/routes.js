@@ -11,9 +11,6 @@ import {
   AllProducts,
   Cart
 } from './components'
-// import CreateAccount from './components/CreateAccount'
-// import AllProducts from './components/allproducts'
-// import Cart from './components/Cart'
 import {me} from './store'
 
 /**
@@ -26,7 +23,6 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
