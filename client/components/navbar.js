@@ -36,7 +36,7 @@ const Navbar = ({handleClick, isLoggedIn}) => {
                 </NavLink>
               </li>
             </ul>
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav mr-right">
               {isLoggedIn ? (
                 <ul className="navbar-nav mr-auto">
                   <NavLink
