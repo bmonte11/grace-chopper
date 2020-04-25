@@ -47,21 +47,6 @@ form div {
   padding: 3px;
 }
 
-.list-group list-group-horizontal {
-  display: flex;
-  flex-direction: row;
-}
-
-#list-product {
-  display: flex;
-  flex-direction: row;
-}
-
-.list-item {
-  display: flex;
-  font-size: 0.75em;
-}
-
 .card {
   width: 18rem;
 }
@@ -104,4 +89,13 @@ form div {
 
 #list-orders > .card {
   margin-bottom: 1em;
+}
+
+#product-list {
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+#product {
+  margin: 1em;
 }

@@ -3,9 +3,9 @@ import {withRouter} from 'react-router-dom'
 
 export default withRouter(function({products, history}) {
   return (
-    <ul className="list-group flex-md-row flex-wrap">
+    <ul className="list-group flex-md-row" id="product-list">
       {products.map(product => (
-        <div className="card" key={product.id}>
+        <li className="card" id="product" key={product.id}>
           <img
             className="card-img-top"
             src={product.photo}
@@ -19,7 +19,7 @@ export default withRouter(function({products, history}) {
               Add to cart
             </a>
           </div>
-        </div>
+        </li>
       ))}
     </ul>
   )
