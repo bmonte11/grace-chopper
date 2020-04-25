@@ -52,6 +52,11 @@ form div {
   flex-direction: row;
 }
 
+#list-product {
+  display: flex;
+  flex-direction: row;
+}
+
 .list-item {
   display: flex;
   font-size: 0.75em;
@@ -95,4 +100,8 @@ form div {
 
 .review {
   margin: 20px auto;
+}
+
+#list-orders > .card {
+  margin-bottom: 1em;
 }

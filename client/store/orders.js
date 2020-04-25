@@ -2,15 +2,15 @@ import axios from 'axios'
 
 const SET_ORDERS = 'SET_ORDERS'
 
-export const setProducts = orders => {
+export const setOrders = orders => {
   return {type: SET_ORDERS, orders}
 }
 
 export function fetchOrders() {
   return async function(dispatch) {
     try {
-      const result = await axios.get('/api/orders')
-      dispatch(setProducts(result.data))
+      const {data} = await axios.get('/api/orders')
+      dispatch(setOrders(data))
     } catch (err) {
       console.error(err)
     }
