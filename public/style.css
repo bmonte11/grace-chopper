@@ -42,23 +42,6 @@ form div {
   margin: auto 5px;
 }
 
-.add-to-cart-button {
-  border: solid 1px;
-  padding: 3px;
-}
-
-.card {
-  width: 18rem;
-}
-
-.card-title {
-  font-size: 1.5em;
-}
-
-.cart-card-img-top {
-  max-width: 8em;
-}
-
 #single-product-description {
   width: 800px;
   margin: 30px auto;
@@ -87,15 +70,37 @@ form div {
   margin: 20px auto;
 }
 
-#list-orders > .card {
-  margin-bottom: 1em;
+/* .add-to-cart-button {
+	border: solid 1px;
+	padding: 3px;
+} */
+
+.card {
+  width: 15em;
 }
 
-#product-list {
-  flex-wrap: wrap;
+.card-title {
+  font-size: 1.5em;
+}
+
+.cart-card-img-top {
+  max-width: 8em;
+}
+
+/* #products-card {
+  flex
+} */
+
+/* #products-container {
+	margin: 1em;
+	display: flex;
+	flex-wrap: wrap;
   align-content: flex-start;
+	justify-content: center;
+	background-color: pink;
 }
 
-#product {
-  margin: 1em;
-}
+#products-card {
+	background-color: gray;
+	margin: 1em;
+} */

@@ -10,12 +10,7 @@ class AllOrders extends Component {
 
   render() {
     const orders = this.props.orders
-    return (
-      <div className="orders">
-        <h1>Your Orders</h1>
-        <ListOrders orders={orders} />;
-      </div>
-    )
+    return <ListOrders orders={orders} />
   }
 }
 
