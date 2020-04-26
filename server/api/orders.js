@@ -38,7 +38,6 @@ router.get('/', async (req, res, next) => {
         }
       }
     })
-    console.log(orders)
     res.status(200).json(orders)
   } catch (err) {
     next(err)
@@ -47,12 +46,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const orders = await Order.findByPk({
-      where: {
-        status: {
-          [Op.in]: ['shipping', 'completed']
-        }
-      },
+    const order = await Order.findByPk(req.params.id, {
       include: [
         {
           model: Item,
@@ -64,8 +58,8 @@ router.get('/:id', async (req, res, next) => {
         }
       ]
     })
-    console.log(orders)
-    res.status(200).json(orders)
+    console.log(order)
+    res.status(200).json(order)
   } catch (err) {
     next(err)
   }

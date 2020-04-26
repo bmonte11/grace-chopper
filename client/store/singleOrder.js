@@ -6,10 +6,10 @@ export const setSingleOrder = singleOrder => {
   return {type: SET_SINGLE_ORDER, singleOrder}
 }
 
-export function fetchSingleOrder() {
+export function fetchSingleOrder(id) {
   return async function(dispatch) {
     try {
-      const {data} = await axios.get('/api/orders/:id')
+      const {data} = await axios.get(`/api/orders/${id}`)
       dispatch(setSingleOrder(data))
     } catch (err) {
       console.error(err)

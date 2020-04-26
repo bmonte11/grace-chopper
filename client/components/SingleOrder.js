@@ -1,36 +1,27 @@
-// import React, {Component} from 'react'
-// import {connect} from 'react-redux'
-// import {fetchSingleOrder} from '../store/single-order'
-// import changeQuantity from '../utils/changeQuantity'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {fetchSingleOrder} from '../store/singleOrder'
 
-// class SingleProduct extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       quantityToAdd: 1
-//     }
-//     this.changeQuantity = changeQuantity.bind(this)
-//   }
+class SingleOrder extends Component {
+  componentDidMount() {
+    this.props.getSingleOrder(this.props.orderId)
+  }
 
-//   async componentDidMount() {
-//     const orderId = this.props.match.params.OrderId
-//     await this.props.getProduct(orderId)
-//   }
+  render() {
+    // const items = this.props.singleOrder.items;
+    return <div>{this.props.singleOrder.status}</div>
+    // return this.props.singleOrder.items.map((item) => {
+    // 	return <div key={item.id}>{item.product.name}</div>;
+    // });
+  }
+}
 
-//   render() {
-//     const {order} = this.props
-//     return (
+const mapState = state => ({
+  singleOrder: state.singleOrder
+})
 
-//     )
-//   }
-// }
+const mapDispatch = dispatch => ({
+  getSingleOrder: id => dispatch(fetchSingleOrder(id))
+})
 
-// const mapState = state => ({
-//   order: state.singleOrder,
-// })
-
-// const mapDispatch = dispatch => ({
-//   getOrder: id => dispatch(fetchSingleOrder(id)),
-// })
-
-// export default connect(mapState, mapDispatch)(SingleOrder)
+export default connect(mapState, mapDispatch)(SingleOrder)

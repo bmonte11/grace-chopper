@@ -1,5 +1,6 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
+import SingleOrder from './SingleOrder'
 
 export default withRouter(function({orders}) {
   return (
@@ -16,10 +17,7 @@ export default withRouter(function({orders}) {
               <h5 className="card-title">
                 {order.status === 'completed' ? 'Delivered' : 'Shipped'}
               </h5>
-              <p className="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
+              <SingleOrder orderId={order.id} />
               <a href="#" className="btn btn-primary">
                 View Order
               </a>
