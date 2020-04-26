@@ -36,6 +36,22 @@ router.get('/', async (req, res, next) => {
         status: {
           [Op.in]: ['shipping', 'completed']
         }
+      }
+    })
+    console.log(orders)
+    res.status(200).json(orders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const orders = await Order.findByPk({
+      where: {
+        status: {
+          [Op.in]: ['shipping', 'completed']
+        }
       },
       include: [
         {

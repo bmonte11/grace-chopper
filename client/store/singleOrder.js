@@ -17,7 +17,7 @@ export function fetchSingleOrder() {
   }
 }
 
-export default function(state = [], action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case SET_SINGLE_ORDER:
       return action.singleOrder
