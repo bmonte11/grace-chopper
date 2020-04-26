@@ -21,12 +21,12 @@ export const fetchUsers = () => {
 }
 
 // I'm wondering what the best way to handle this is.
-// Should I call fetch users like this?
+// Should I call fetch users like this? -Jonah
 export const changeUserStatus = (userId, status) => {
   return async dispatch => {
     try {
-      await axios.put(`/users/${userId}`, {isAdmin: status})
-      await fetchUsers(dispatch)
+      await axios.put(`/api/users/${userId}`, {isAdmin: status})
+      fetchUsers(dispatch)
     } catch (error) {
       console.error(error)
     }

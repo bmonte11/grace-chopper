@@ -17,6 +17,16 @@ router.get('/', isAdmin, async (req, res, next) => {
   }
 })
 
+router.put('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId)
+    await user.update(req.body)
+    res.sendStatus(200)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const newUser = await User.create(req.body)

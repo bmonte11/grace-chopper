@@ -2,9 +2,12 @@ import React, {Component} from 'react'
 import {changeUserStatus} from '../store/users'
 import {connect} from 'react-redux'
 
-// This function will handle conditional rendering of the admin/customer field
-// based on user's admin status and whether the admin intends to edit the status
-
+// I'm not sure how to handle the UI response to this functionality. As of now, there
+// are the following bugs:
+// 1. list doesn't rerender when change is made (problem with thunks)
+// 2. When list does rerender, the order is changed (should be sorted by id by default)
+// 3. When selecting "no" in confirm, the select element still changes even though
+//    put request isn't made
 class UserTableRow extends Component {
   constructor(props) {
     super(props)
@@ -13,7 +16,6 @@ class UserTableRow extends Component {
   }
   windowConfirm = event => {
     if (window.confirm("Change this user's admin privileges?")) {
-      console.log(this.props.user.id, event.target.value)
       this.props.updateUserStatus(this.props.user.id, event.target.value)
     }
   }
