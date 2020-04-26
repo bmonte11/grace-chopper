@@ -10,7 +10,9 @@ import {
   CreateAccount,
   AllProducts,
   Cart,
-  AccountPage
+  AccountPage,
+  AdminDashboard,
+  UsersList
 } from './components'
 import {me} from './store'
 
@@ -30,7 +32,10 @@ class Routes extends Component {
         <Route path="/home" component={HomePage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={CreateAccount} />
-        <Route path="/account" component={AccountPage} />
+        {/* Move account/admin routes into loggedin section once finished with development */}
+        <Route exact path="/account" component={AccountPage} />
+        <Route exact path="/account/admin" component={AdminDashboard} />
+        <Route exact path="/account/admin/users" component={UsersList} />
         {/* <Route path="/orders" component={AllOrders} /> */}
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={AllProducts} />

@@ -1,16 +1,22 @@
 import React from 'react'
-import {Navlink} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {AdminDashboard} from '.'
 
 const AccountPage = props => {
   return (
     <div id="account-page">
       <h2>My Account</h2>
-      <div id="admin-functions">
-        <div>View/edit users</div>
-        <div>View/add/edit products</div>
+      <div>
+        Everything below here will either be rendered conditionally, or a link
+        to an admin dashboard will be rendered conditionally. Dunno yet.
       </div>
+      <AdminDashboard />
     </div>
   )
 }
 
-export default AccountPage
+const mapState = state => ({
+  user: state.user
+})
+
+export default connect(mapState)(AccountPage)
