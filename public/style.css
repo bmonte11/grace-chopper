@@ -84,3 +84,13 @@ form div {
   max-height: 100%;
   max-width: 100%;
 }
+
+#admin-dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
+#admin-dashboard-menu {
+  display: flex;
+  flex-direction: column;
+}
