@@ -22,7 +22,7 @@ export default withRouter(function({orders}) {
                 View Order
               </a>
             </div>
-            <div className="card-footer text-muted">2 days ago</div>
+            <div className="card-footer text-muted" />
           </div>
         ))}
       </ul>

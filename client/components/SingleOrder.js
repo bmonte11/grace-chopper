@@ -8,11 +8,13 @@ class SingleOrder extends Component {
   }
 
   render() {
-    // const items = this.props.singleOrder.items;
-    return <div>{this.props.singleOrder.status}</div>
-    // return this.props.singleOrder.items.map((item) => {
-    // 	return <div key={item.id}>{item.product.name}</div>;
-    // });
+    const items = this.props.singleOrder.items || []
+    console.log('ITEMS ARRAY!!:', items)
+    console.log('PROPS!!:', this.props.singleOrder)
+    // return <div>{this.props.singleOrder.status}</div>;
+    return items.map(item => {
+      return <div key={item.id} />
+    })
   }
 }
 
