@@ -22,6 +22,8 @@ class SingleProduct extends Component {
 
   render() {
     const {product} = this.props
+    const price = product.price / 100
+    const displayPrice = price.toFixed(2)
     return (
       <div id="single-product">
         <div id="single-product-info">
@@ -32,7 +34,7 @@ class SingleProduct extends Component {
           </div>
           <div id="single-product-info-right">
             <h2>{product.name}</h2>
-            <h3>{`$${product.price / 100}`}</h3>
+            <h3>{`$${displayPrice}`}</h3>
             <div id="single-product-addtocart">
               <div onClick={() => this.changeQuantity('decrement')}>-</div>
               <div>{this.state.quantityToAdd}</div>
