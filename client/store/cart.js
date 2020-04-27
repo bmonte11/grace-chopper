@@ -21,6 +21,7 @@ export function fetchCart() {
   return async function(dispatch) {
     try {
       const {data} = await axios.get('/api/orders/cart')
+      console.log(data, 'data in the fetchCart thunk')
       const cart = data[0]
       dispatch(setCart(cart))
     } catch (err) {
@@ -35,7 +36,8 @@ export function postToCart(orderItem) {
     try {
       const response = await axios.post('/api/orders/cart', {
         productId: orderItem.productId,
-        quantity: orderItem.quantity
+        quantity: orderItem.quantity,
+        orderId: orderItem.orderId
       })
       if (response.status === 200) {
         dispatch(addToCart(response.data))

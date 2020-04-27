@@ -12,6 +12,7 @@ import {
   Cart
 } from './components'
 import {me} from './store'
+import {fetchCart} from './store/cart'
 
 /**
  * COMPONENT
@@ -61,6 +62,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(fetchCart())
     }
   }
 }

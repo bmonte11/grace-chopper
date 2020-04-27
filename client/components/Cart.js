@@ -128,8 +128,8 @@ import {connect} from 'react-redux'
 // ]
 
 class Cart extends Component {
-  async componentDidMount() {
-    await this.props.getCart()
+  componentDidMount() {
+    this.props.getCart()
   }
 
   handleChange() {}
@@ -138,13 +138,18 @@ class Cart extends Component {
 
   render() {
     let cart = this.props.cart
+    console.log(cart, 'this.props.cart in the main Cart Component')
     return (
       <div>
         <h1>This is the Cart</h1>
         <div className="theCart">
-          {cart.items.map(item => {
-            return <CartItem item={item} key={item.id} />
-          })}
+          {!cart.items ? (
+            <div>Loading... </div>
+          ) : (
+            cart.items.map(item => {
+              return <CartItem item={item} key={item.id} />
+            })
+          )}
         </div>
         <div className="total">
           This is the calculation for the total price{' '}

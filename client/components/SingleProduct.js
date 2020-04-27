@@ -4,7 +4,7 @@ import {fetchSingleProduct} from '../store/single-product'
 import {fetchProductReviews} from '../store/single-product-reviews'
 import {SingleReview} from '.'
 import changeQuantity from '../utils/changeQuantity'
-import {postToCart} from '../store/cart'
+import {postToCart, fetchCart} from '../store/cart'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -24,11 +24,14 @@ class SingleProduct extends Component {
   handleSubmit(event) {
     event.preventDefault()
     try {
+      console.log(this.props, 'all the props')
       let orderItem = {
         quantity: this.state.quantityToAdd,
-        productId: this.props.match.params.productId
+        productId: this.props.match.params.productId,
+        orderId: this.props.cart.id
       }
       this.props.updateCart(orderItem)
+      this.props.getCart()
     } catch (err) {
       console.error(err)
     }
@@ -82,7 +85,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   getProduct: id => dispatch(fetchSingleProduct(id)),
   getReviews: id => dispatch(fetchProductReviews(id)),
-  updateCart: orderItem => dispatch(postToCart(orderItem))
+  updateCart: orderItem => dispatch(postToCart(orderItem)),
+  getCart: () => dispatch(fetchCart())
 })
 
 export default connect(mapState, mapDispatch)(SingleProduct)

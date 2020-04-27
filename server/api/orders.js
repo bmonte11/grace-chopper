@@ -43,7 +43,7 @@ router.get('/cart', async (req, res, next) => {
 router.post('/cart', async (req, res, next) => {
   try {
     const newItem = await Item.create({
-      orderId: req.session.cart[0].id,
+      orderId: req.body.orderId,
       productId: req.body.productId,
       quantity: req.body.quantity
     })
