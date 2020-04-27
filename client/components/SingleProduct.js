@@ -4,6 +4,7 @@ import {fetchSingleProduct} from '../store/single-product'
 import {fetchProductReviews} from '../store/single-product-reviews'
 import {SingleReview} from '.'
 import changeQuantity from '../utils/changeQuantity'
+import {postToCart, fetchCart} from '../store/cart'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -20,8 +21,23 @@ class SingleProduct extends Component {
     await this.props.getReviews(productId)
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+    try {
+      let orderItem = {
+        quantity: this.state.quantityToAdd,
+        productId: this.props.match.params.productId,
+        orderId: this.props.cart.id
+      }
+      this.props.updateCart(orderItem)
+      this.props.getCart()
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   render() {
-    const {product} = this.props
+    const {product, cart} = this.props
     return (
       <div id="single-product">
         <div id="single-product-info">
@@ -36,8 +52,14 @@ class SingleProduct extends Component {
             <div id="single-product-addtocart">
               <div onClick={() => this.changeQuantity('decrement')}>-</div>
               <div>{this.state.quantityToAdd}</div>
+              {/* if this number is greater than database number, disable button */}
               <div onClick={() => this.changeQuantity('increment')}>+</div>
-              <div className="add-to-cart-button">Add To Cart</div>
+              <div
+                className="add-to-cart-button"
+                onClick={e => this.handleSubmit(e)}
+              >
+                Add To Cart
+              </div>
             </div>
           </div>
         </div>
@@ -55,12 +77,15 @@ class SingleProduct extends Component {
 
 const mapState = state => ({
   product: state.singleProduct,
-  reviews: state.singleProductReviews
+  reviews: state.singleProductReviews,
+  cart: state.cart
 })
 
 const mapDispatch = dispatch => ({
   getProduct: id => dispatch(fetchSingleProduct(id)),
-  getReviews: id => dispatch(fetchProductReviews(id))
+  getReviews: id => dispatch(fetchProductReviews(id)),
+  updateCart: orderItem => dispatch(postToCart(orderItem)),
+  getCart: () => dispatch(fetchCart())
 })
 
 export default connect(mapState, mapDispatch)(SingleProduct)

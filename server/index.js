@@ -62,12 +62,15 @@ const createApp = () => {
   )
   app.use(passport.initialize())
   app.use(passport.session())
-  // app.use((req, res, next) => {
-  //   //if not user, empty cart
-  //   //if cart exists, move on
-  //   //if user, load cart from order
-  //   req.session.cart = {}
-  // })
+  app.use((req, res, next) => {
+    if (!req.user) {
+      //if not user, empty cart
+      req.session.cart = req.session.cart || {items: []}
+    }
+    //if cart exists, move on
+    //if user, load cart from order
+    next()
+  })
 
   // auth and api routes
   app.use('/auth', require('./auth'))
