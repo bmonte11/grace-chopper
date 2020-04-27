@@ -94,3 +94,13 @@ form div {
   display: flex;
   flex-direction: column;
 }
+
+.products-list-photo {
+  height: 50px;
+  width: 50px;
+}
+
+.products-list-photo img {
+  max-height: 100%;
+  max-width: 100%;
+}
