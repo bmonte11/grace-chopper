@@ -18,17 +18,10 @@ class Cart extends Component {
     event.preventDefault()
     this.props.checkoutCart(this.props.cart)
     this.props.history.push('/order/confirmation')
-    // Snapshot sale price and update order items: check
-    // Update order status to shipping
-    // Subtract from products stock: check
-    // Fetch cart
-    // Fetch products
-    // Redirect
   }
 
   render() {
     let cart = this.props.cart
-    console.log(cart, 'this.props.cart in the main Cart Component')
     return (
       <div>
         <h1>This is the Cart</h1>

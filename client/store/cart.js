@@ -87,7 +87,6 @@ export function checkoutCart(cart) {
       .then(axios.put(`/api/orders/${cart.id}`, {status: 'shipping'}))
       // How do we error handle
       .catch(console.log('error'))
-    console.log('now we dispatch')
     dispatch(fetchCart())
     dispatch(fetchProducts())
   }
