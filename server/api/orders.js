@@ -42,16 +42,38 @@ router.get('/cart', async (req, res, next) => {
 
 router.post('/cart', async (req, res, next) => {
   try {
-    const newItem = await Item.create({
-      orderId: req.body.orderId,
-      productId: req.body.productId,
-      quantity: req.body.quantity
+    const newItem = await Item.findOrCreate({
+      where: {
+        orderId: req.body.orderId,
+        productId: req.body.productId
+      },
+      defaults: {
+        orderId: req.body.orderId,
+        productId: req.body.productId,
+        quantity: req.body.quantity
+      }
     })
+    const item = newItem[0].dataValues
+    if (!newItem[1]) {
+      Item.update(
+        {quantity: item.quantity + req.body.quantity},
+        {
+          where: {
+            id: item.id
+          }
+        }
+      )
+    }
+    console.log(newItem)
     res.send(newItem)
   } catch (err) {
     next(err)
   }
 })
+
+//   Book.update(
+//  {title: req.body.title},
+//  {where: req.params.bookId}
 
 router.delete('/cart', async (req, res, next) => {
   try {
