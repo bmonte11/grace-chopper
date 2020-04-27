@@ -138,7 +138,6 @@ class Cart extends Component {
 
   render() {
     let cart = this.props.cart
-    console.log(cart, 'this.props.cart in the main Cart Component')
     return (
       <div>
         <h1>This is the Cart</h1>

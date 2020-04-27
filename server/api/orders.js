@@ -64,7 +64,6 @@ router.post('/cart', async (req, res, next) => {
         }
       )
     }
-    console.log(newItem)
     res.send(newItem)
   } catch (err) {
     next(err)

@@ -21,7 +21,6 @@ export function fetchCart() {
   return async function(dispatch) {
     try {
       const {data} = await axios.get('/api/orders/cart')
-      console.log(data, 'data in the fetchCart thunk')
       const cart = data[0]
       dispatch(setCart(cart))
     } catch (err) {
@@ -31,7 +30,6 @@ export function fetchCart() {
 }
 
 export function postToCart(orderItem) {
-  // console.log(productId, 'productId in postToCart thunk')
   return async function(dispatch) {
     try {
       const response = await axios.post('/api/orders/cart', {

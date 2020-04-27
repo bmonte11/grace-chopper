@@ -12,7 +12,6 @@ class CartItem extends React.Component {
     this.props.getCart()
   }
   render() {
-    console.log(this.props.item.product, 'where is the product here?')
     return (
       <div>
         {!this.props.item.product ? (
