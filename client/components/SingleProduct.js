@@ -24,7 +24,6 @@ class SingleProduct extends Component {
   handleSubmit(event) {
     event.preventDefault()
     try {
-      console.log(this.props, 'all the props')
       let orderItem = {
         quantity: this.state.quantityToAdd,
         productId: this.props.match.params.productId,
