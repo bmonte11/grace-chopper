@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {fetchProducts} from './products'
 
 const SET_CART = 'SET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -62,6 +63,33 @@ export function removeItem(itemId) {
     } catch (err) {
       console.log(err)
     }
+  }
+}
+
+export function checkoutCart(cart) {
+  return function(dispatch) {
+    Promise.all(
+      cart.items.map(item => {
+        return axios.put(`/api/items/${item.id}`, {
+          salePrice: item.product.price
+        })
+      })
+    )
+      .then(
+        Promise.all(
+          cart.items.map(item => {
+            return axios.put(`/api/products/${item.productId}/decrement`, {
+              quantity: item.quantity
+            })
+          })
+        )
+      )
+      .then(axios.put(`/api/orders/${cart.id}`, {status: 'shipping'}))
+      // How do we error handle
+      .catch(console.log('error'))
+    console.log('now we dispatch')
+    dispatch(fetchCart())
+    dispatch(fetchProducts())
   }
 }
 

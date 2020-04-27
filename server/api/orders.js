@@ -40,6 +40,16 @@ router.get('/cart', async (req, res, next) => {
 //Create an item in the item table with a matching orderID
 //Subtract x amount from the product table
 
+router.put('/:orderId', async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.orderId)
+    order.update(req.body)
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/cart', async (req, res, next) => {
   try {
     const newItem = await Item.create({
