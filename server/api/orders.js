@@ -42,7 +42,6 @@ router.get('/cart', async (req, res, next) => {
 
 router.post('/cart', async (req, res, next) => {
   try {
-    console.log(req.session, 'back-end hide and seek')
     const newItem = await Item.create({
       orderId: req.session.cart[0].id,
       productId: req.body.productId,
@@ -56,7 +55,6 @@ router.post('/cart', async (req, res, next) => {
 
 router.delete('/cart', async (req, res, next) => {
   try {
-    console.log(req.body, 'what is req.body?!?!')
     const item = await Item.findByPk(req.body.itemId)
     await item.destroy()
     res.status(204).send(item)

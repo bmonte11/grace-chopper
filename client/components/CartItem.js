@@ -1,7 +1,6 @@
 import React from 'react'
 import {removeItem} from '../store/cart'
 import {connect} from 'react-redux'
-// import changeQuantity from '../utils/changeQuantity'
 
 class CartItem extends React.Component {
   constructor(props) {
@@ -12,7 +11,6 @@ class CartItem extends React.Component {
     this.props.remove(id)
   }
   render() {
-    // console.log(this.props, 'where is the product??')
     return (
       <div>
         <div>Name: {this.props.item.product.name}</div>
@@ -45,4 +43,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(null, mapDispatch)(CartItem)
-// export default CartItem

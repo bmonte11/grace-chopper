@@ -4,7 +4,6 @@ import {fetchSingleProduct} from '../store/single-product'
 import {fetchProductReviews} from '../store/single-product-reviews'
 import {SingleReview} from '.'
 import changeQuantity from '../utils/changeQuantity'
-import axios from 'axios'
 import {postToCart} from '../store/cart'
 
 class SingleProduct extends Component {
@@ -18,12 +17,8 @@ class SingleProduct extends Component {
 
   async componentDidMount() {
     const productId = this.props.match.params.productId
-    console.log(this.props.match.params, 'is the order id here?')
     await this.props.getProduct(productId)
     await this.props.getReviews(productId)
-    // await this.props.updateCart(this.props.cart.id, productId)
-    console.log(this.props.cart.id, 'order id we want?')
-    console.log(productId, 'product id we want?')
   }
 
   handleSubmit(event) {
@@ -34,8 +29,6 @@ class SingleProduct extends Component {
         productId: this.props.match.params.productId
       }
       this.props.updateCart(orderItem)
-
-      // console.log(this.props, 'after the axios request')
     } catch (err) {
       console.error(err)
     }
@@ -57,6 +50,7 @@ class SingleProduct extends Component {
             <div id="single-product-addtocart">
               <div onClick={() => this.changeQuantity('decrement')}>-</div>
               <div>{this.state.quantityToAdd}</div>
+              {/* if this number is greater than database number, disable button */}
               <div onClick={() => this.changeQuantity('increment')}>+</div>
               <div
                 className="add-to-cart-button"

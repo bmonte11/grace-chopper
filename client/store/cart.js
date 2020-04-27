@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const SET_CART = 'SET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
-const REMOVE_ITEM = 'REMOVE_ITEM'
 
 export const setCart = cart => {
   return {
@@ -23,7 +22,6 @@ export function fetchCart() {
     try {
       const {data} = await axios.get('/api/orders/cart')
       const cart = data[0]
-      // console.log(cart, 'this is the cart from the fetchCart thunk')
       dispatch(setCart(cart))
     } catch (err) {
       console.log(err)
