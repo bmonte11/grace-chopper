@@ -27,7 +27,7 @@ class Cart extends Component {
         <h1>This is the Cart</h1>
         <div className="theCart">
           {!cart.items ? (
-            <div>Loading... </div>
+            <div>No items in cart</div>
           ) : (
             cart.items.map(item => {
               return <CartItem item={item} key={item.id} />
