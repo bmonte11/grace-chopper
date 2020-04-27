@@ -28,6 +28,7 @@ router.get('/cart', async (req, res, next) => {
   }
 })
 
+// replace where userId:1 to req.user.id for actual user
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({

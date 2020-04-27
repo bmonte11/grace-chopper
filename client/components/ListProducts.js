@@ -19,9 +19,7 @@ export default withRouter(function({products, history}) {
             <div className="card-body">
               <h5 className="card-title">{product.name}</h5>
               <p className="card-text">${product.price}</p>
-              <a href="#" className="btn btn-primary">
-                Add to cart
-              </a>
+              <p className="card-text">{product.rating}/5 stars</p>
             </div>
           </li>
         ))}
