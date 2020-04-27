@@ -9,10 +9,13 @@ export {default as CartItem} from './CartItem'
 export {default as ListProducts} from './ListProducts'
 export {default as SingleReview} from './SingleReview'
 export {default as AccountPage} from './AccountPage'
-export {default as AdminDashboard} from './AdminDashboard'
-export {default as UsersList} from './UsersList'
-export {default as UserTableRow} from './UserTableRow'
-export {default as AdminDashboardRoutes} from './AdminDashboardRoutes'
-export {default as AdminProductsList} from './AdminProductsList'
-export {default as AdminProductsListRow} from './AdminProductsListRow'
+export {
+  AdminDashboard,
+  AdminUsersList,
+  AdminUserTableRow,
+  AdminDashboardRoutes,
+  AdminProductsList,
+  AdminProductsListRow,
+  AdminSingleProduct
+} from './admin'
 export {Login, Signup} from './AuthForm'

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {fetchUsers} from '../store/users'
-import {UserTableRow} from '.'
+import {fetchUsers} from '../../store/users'
+import {AdminUserTableRow} from '..'
 import {connect} from 'react-redux'
 
 class UsersList extends Component {
@@ -42,7 +42,7 @@ class UsersList extends Component {
             </tr>
             {this.props.users.map(user => {
               return (
-                <UserTableRow
+                <AdminUserTableRow
                   key={user.id}
                   user={user}
                   editUsers={this.state.editUsers}

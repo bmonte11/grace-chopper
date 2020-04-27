@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {changeUserStatus} from '../store/users'
+import {changeUserStatus} from '../../store/users'
 import {connect} from 'react-redux'
 
 // I'm not sure how to handle the UI response to this functionality. As of now, there

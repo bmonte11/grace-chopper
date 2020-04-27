@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {AdminProductsListRow} from '.'
+import {AdminProductsListRow} from '..'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/products'
+import {fetchProducts} from '../../store/products'
 
 class AdminProductsList extends Component {
   componentDidMount() {

@@ -1,9 +1,11 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 
-const AdminProductsListRow = props => {
+const AdminProductsListRow = withRouter(props => {
   const {product} = props
+  const path = `/account/admin/products/${product.id}`
   return (
-    <tr>
+    <tr onClick={() => props.history.push(path)}>
       <td className="products-list-photo">
         <img src={product.photo} />
       </td>
@@ -15,6 +17,6 @@ const AdminProductsListRow = props => {
       <td>{product.origin}</td>
     </tr>
   )
-}
+})
 
 export default AdminProductsListRow
