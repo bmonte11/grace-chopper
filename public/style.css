@@ -104,3 +104,13 @@ form div {
 	background-color: gray;
 	margin: 1em;
 } */
+
+#orders-container {
+  width: 100%;
+  margin: 1em 1em 1em 1em;
+}
+
+#orders {
+  display: flex;
+  flex: wrap;
+}

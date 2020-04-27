@@ -9,11 +9,16 @@ class SingleOrder extends Component {
 
   render() {
     const items = this.props.singleOrder.items || []
-    console.log('ITEMS ARRAY!!:', items)
-    console.log('PROPS!!:', this.props.singleOrder)
-    // return <div>{this.props.singleOrder.status}</div>;
     return items.map(item => {
-      return <div key={item.id} />
+      return (
+        <div className="card" id="orders" key={item.id}>
+          <img src={item.product.photo} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <p className="card-text">{item.product.name}</p>
+            <p>${item.salePrice}</p>
+          </div>
+        </div>
+      )
     })
   }
 }
