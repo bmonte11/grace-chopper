@@ -6,7 +6,6 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
 
 export const setCart = cart => {
-  console.log('cart in setCart', cart)
   return {
     type: SET_CART,
     cart
@@ -59,6 +58,7 @@ export function postToCart(orderItem) {
 }
 
 export function removeItem(itemId) {
+  console.log('itemId in thunk', itemId)
   return async function(dispatch) {
     try {
       const response = await axios.delete('/api/orders/cart', {
@@ -102,7 +102,6 @@ export function checkoutCart(cart) {
 }
 
 export default function(state = {items: []}, action) {
-  console.log('the cart in the reducer', action.cart)
   switch (action.type) {
     case SET_CART:
       return action.cart
