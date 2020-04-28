@@ -23,7 +23,7 @@ form div {
 #single-product {
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin: 100px auto;
   justify-content: center;
 }
 
@@ -36,15 +36,11 @@ form div {
 #single-product-addtocart {
   display: flex;
   flex-direction: row;
+  padding: 5px;
 }
 
 #single-product-addtocart div {
   margin: auto 5px;
-}
-
-.add-to-cart-button {
-  border: solid 1px;
-  padding: 3px;
 }
 
 #single-product-description {
@@ -73,4 +69,151 @@ form div {
 
 .review {
   margin: 20px auto;
+}
+
+.all-products-photo {
+  height: 200px;
+  width: 200px;
+}
+
+.all-products-photo img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#admin-dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
+#admin-dashboard-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+#admin-dashboard-content {
+  width: 100%;
+}
+
+.products-list-photo {
+  height: 50px;
+  width: 50px;
+}
+
+.products-list-photo img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#users-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 300px;
+}
+
+.link-button {
+  text-decoration: underline;
+  color: #007bff;
+}
+
+.link-button:hover {
+  cursor: pointer;
+  color: #0056b3;
+}
+
+.admin-content {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.table-row td {
+  margin: 2px 20px;
+}
+
+.table-row th {
+  margin: 2px 20px;
+}
+
+#admin-dashboard-menu {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 20px;
+  width: 220px;
+}
+
+.add-to-cart-button {
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 3px;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #343a40;
+}
+
+.change-quantity:hover {
+  cursor: pointer;
+}
+
+.card {
+  width: 15em;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 0.75em;
+}
+
+.cart-card-img-top {
+  max-width: 8em;
+}
+
+/* #products-card {
+
+} */
+
+#products-container {
+  /* margin: 1em; */
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+#products-card {
+  background-color: gray;
+  margin: 0.5em;
+}
+
+#orders-container {
+  width: 100%;
+  margin: 0.5em 0.5em 0.5em 0.5em;
+}
+
+#orders {
+  display: flex;
+  flex: wrap;
+}
+
+/* #products-card > div {
+  display: flex;
+  flex-direction: column;
+} */
+
+#account-page {
+  display: flex;
+  flex-direction: row;
+}
+
+#account-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
