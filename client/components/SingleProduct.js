@@ -52,10 +52,20 @@ class SingleProduct extends Component {
             <h2>{product.name}</h2>
             <h3>{`$${product.price / 100}`}</h3>
             <div id="single-product-addtocart">
-              <div onClick={() => this.changeQuantity('decrement')}>-</div>
+              <div
+                className="change-quantity"
+                onClick={() => this.changeQuantity('decrement')}
+              >
+                -
+              </div>
               <div>{this.state.quantityToAdd}</div>
               {/* if this number is greater than database number, disable button */}
-              <div onClick={() => this.changeQuantity('increment')}>+</div>
+              <div
+                className="change-quantity"
+                onClick={() => this.changeQuantity('increment')}
+              >
+                +
+              </div>
               <div
                 className="add-to-cart-button"
                 onClick={e => this.handleSubmit(e)}

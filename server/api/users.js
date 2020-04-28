@@ -1,18 +1,29 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Review} = require('../db/models')
+const {isAdmin} = require('./utils')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', isAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'email']
+      attributes: ['id', 'email', 'firstName', 'lastName', 'isAdmin']
     })
     res.json(users)
   } catch (err) {
     next(err)
+  }
+})
+
+router.put('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId)
+    await user.update(req.body)
+    res.sendStatus(200)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -22,5 +33,19 @@ router.post('/', async (req, res, next) => {
     res.status(201).json(newUser)
   } catch (err) {
     next(err)
+  }
+})
+
+// Reviews
+router.get('/:userId/reviews', async (req, res, next) => {
+  try {
+    const reviews = await Review.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    res.json(reviews)
+  } catch (error) {
+    next(error)
   }
 })

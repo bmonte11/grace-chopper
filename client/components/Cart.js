@@ -29,19 +29,27 @@ class Cart extends Component {
     let cart = this.props.cart
     return (
       <div>
-        <h1>This is the Cart</h1>
-        <div className="theCart">
+        <h1>Cart</h1>
+        <div className="list-group list-group-sm">
           {!cart.items ? (
             <div>No items in cart</div>
           ) : (
             cart.items.map(item => {
-              return <CartItem item={item} key={item.id} />
+              return (
+                <CartItem
+                  item={item}
+                  key={item.id}
+                  className="list-group-item"
+                />
+              )
             })
           )}
         </div>
         <div className="total">
           This is the calculation for the total price{' '}
         </div>
+
+        <div className="total">Grand Total </div>
         <button
           type="button"
           onClick={async () => {
