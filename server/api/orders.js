@@ -101,6 +101,16 @@ router.post('/cart', async (req, res, next) => {
   }
 })
 
+router.post('/guest', async (req, res, next) => {
+  try {
+    await Order.create({
+      userId: -1
+    })
+  } catch (error) {
+    console.error(error)
+  }
+})
+
 router.delete('/cart', async (req, res, next) => {
   try {
     const item = await Item.findByPk(req.body.itemId)

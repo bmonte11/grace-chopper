@@ -101,6 +101,42 @@ export function checkoutCart(cart) {
   }
 }
 
+export function checkoutGuest(cart) {
+  return async function(dispatch) {
+    console.log('inside thunk checkoutGuest')
+    const newOrder = await axios.post(`/api/orders/guest`, {
+      status: 'shipping',
+      userId: -1
+    })
+    console.log(newOrder, 'new order from checkoutGuest')
+    // Promise.all(
+    //   cart.items.map(item => {
+    //     return axios.post('/api/items', {
+    //       salePrice: item.product.price,
+    //       quantity: item.quantity,
+    //       productId: item.product.productId,
+    //       orderId: newOrder.id
+    //     })
+    //   })
+    // )
+    //   .then(
+    //     Promise.all(
+    //       cart.items.map(item => {
+    //         return axios.put(
+    //           `/api/products/${item.product.productId}/decrement`,
+    //           {
+    //             quantity: item.quantity
+    //           }
+    //         )
+    //       })
+    //     )
+    //   )
+    //   .catch(console.log('guest error'))
+    dispatch(fetchCart())
+    dispatch(fetchProducts())
+  }
+}
+
 export default function(state = {items: []}, action) {
   switch (action.type) {
     case SET_CART:
