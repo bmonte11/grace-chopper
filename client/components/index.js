@@ -18,4 +18,5 @@ export {
   AdminProductsListRow,
   AdminSingleProduct
 } from './admin'
+export {default as OrderConfirmation} from './OrderConfirmation'
 export {Login, Signup} from './AuthForm'

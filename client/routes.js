@@ -12,9 +12,10 @@ import {
   Cart,
   AccountPage,
   AdminDashboard,
-  UsersList
+  OrderConfirmation
 } from './components'
 import {me} from './store'
+import {fetchCart} from './store/cart'
 
 /**
  * COMPONENT
@@ -39,6 +40,7 @@ class Routes extends Component {
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
+        <Route path="/order/confirmation" component={OrderConfirmation} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -67,6 +69,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(fetchCart())
     }
   }
 }

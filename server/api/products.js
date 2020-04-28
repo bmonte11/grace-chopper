@@ -32,7 +32,18 @@ router.put('/:productId', isAdmin, async (req, res, next) => {
   }
 })
 
-router.post('/', isAdmin, async (req, res, next) => {
+// Is this RESTful?
+router.put('/:productId/decrement', async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.productId)
+    await product.decrement('stock', {by: req.body.quantity})
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/', async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
     res.json(product)
