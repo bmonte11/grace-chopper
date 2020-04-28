@@ -9,7 +9,11 @@ class AllProducts extends Component {
   }
 
   render() {
-    return <ListProducts products={this.props.products} />
+    return (
+      <div id="all-product-container">
+        <ListProducts products={this.props.products} />
+      </div>
+    )
   }
 }
 

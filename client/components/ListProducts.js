@@ -3,11 +3,8 @@ import {withRouter} from 'react-router-dom'
 
 export default withRouter(function({products, history}) {
   return (
-    <div>
-      <ul
-        className="d-flex align-content-start flex-wrap"
-        id="products-container"
-      >
+    <div id="products-list-container">
+      <ul className="d-flex align-content-start flex-wrap" id="products-list">
         {products.map(product => (
           <li className="card" key={product.id} id="products-card">
             <img
