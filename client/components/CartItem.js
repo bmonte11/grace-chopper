@@ -12,30 +12,27 @@ class CartItem extends React.Component {
     this.props.getCart()
   }
   render() {
+    const {item} = this.props
     return (
-      <div>
-        {!this.props.item.product ? (
+      <div className="card">
+        {!item.product ? (
           <div>Loading...</div>
         ) : (
           <div>
-            <div>Name: {this.props.item.product.name}</div>
-            <div>Quantity: {this.props.item.quantity}</div>
-            <div>
-              <button type="button">Button to add to quantity</button>
+            <img src={item.photo} className="cart-card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title">{item.name}</h5>
+              <div className="card-text">Quantity: {item.quantity}</div>
+              <div className="total">Item Total: {item.price} </div>
+              <div>
+                <button
+                  type="submit"
+                  onClick={() => this.handleRemove(this.props.item.id)}
+                >
+                  Delete from Cart
+                </button>
+              </div>
             </div>
-            <div>Price: ${this.props.item.price}</div>
-            <div className="total">
-              This is the calculation for the total price of this one item{' '}
-            </div>
-            <div>
-              <button
-                type="submit"
-                onClick={() => this.handleRemove(this.props.item.id)}
-              >
-                Delete from Cart
-              </button>
-            </div>
-            <hr />
           </div>
         )}
       </div>

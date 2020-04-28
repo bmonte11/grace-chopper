@@ -4,14 +4,15 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({isLoggedIn}) => {
+const Navbar = ({handleClick, isLoggedIn}) => {
   return (
     <React.Fragment>
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <NavLink to="/" className="navbar-brand" activeClassName="active">
             <i className="fas fa-utensils" />
-          </a>
+          </NavLink>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -25,15 +26,6 @@ const Navbar = ({isLoggedIn}) => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <NavLink
-                  to="/home"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  Home <span className="sr-only">(current)</span>
-                </NavLink>
-              </li>
               <li className="nav-item">
                 <NavLink
                   to="/products"
@@ -44,34 +36,49 @@ const Navbar = ({isLoggedIn}) => {
                 </NavLink>
               </li>
             </ul>
-            <ul className="navbar-nav mr-auto">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
+            <ul className="navbar-nav mr-right">
+              {isLoggedIn ? (
+                <ul className="navbar-nav mr-auto">
+                  <NavLink
+                    to="/account"
+                    className="nav-link"
+                    activeClassName="active"
+                  >
                     Account
-                  </a>
-                </li>
-              </ul>
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <NavLink
-                    to="/login"
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    Log In
                   </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    to="/signup"
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    Sign Up
-                  </NavLink>
-                </li>
-              </ul>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link"
+                      href="#"
+                      onClick={() => handleClick()}
+                    >
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+              ) : (
+                <ul className="navbar-nav mr-auto">
+                  <li className="nav-item">
+                    <NavLink
+                      to="/login"
+                      className="nav-link"
+                      activeClassName="active"
+                    >
+                      Log In
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      to="/signup"
+                      className="nav-link"
+                      activeClassName="active"
+                    >
+                      Sign Up
+                    </NavLink>
+                  </li>
+                </ul>
+              )}
+
               <ul className="navbar-nav mr-auto" />
               <li className="nav-item">
                 <NavLink
