@@ -11,7 +11,7 @@ export const fetchUsers = () => {
   return async dispatch => {
     try {
       const response = await axios.get('/api/users')
-      const users = response.data
+      const users = response.data.sort((a, b) => (a.id > b.id ? 1 : -1))
       const action = setUsers(users)
       dispatch(action)
     } catch (error) {
@@ -20,8 +20,6 @@ export const fetchUsers = () => {
   }
 }
 
-// I'm wondering what the best way to handle this is.
-// Should I call fetch users like this? -Jonah
 export const changeUserStatus = (userId, status) => {
   return async dispatch => {
     try {

@@ -46,6 +46,7 @@ class UsersList extends Component {
                   key={user.id}
                   user={user}
                   editUsers={this.state.editUsers}
+                  toggleParentEditStatus={this.toggleEditUsers}
                 />
               )
             })}
