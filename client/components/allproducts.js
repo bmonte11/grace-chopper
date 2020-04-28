@@ -1,16 +1,38 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
-import {ListProducts} from '.'
+import {ListProducts, Paginate} from '.'
 
 class AllProducts extends Component {
+  constructor() {
+    super()
+    this.state = {
+      currentPage: 1,
+      productsPerPage: 25,
+      // keep track of total items in database to send to pagination comopnent
+      totalProducts: 100
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
   componentDidMount() {
     this.props.getProducts()
+  }
+
+  handleChange = event => {
+    this.setState({productsPerPage: event.target.value})
   }
 
   render() {
     return (
       <div clasname="products">
+        <div>
+          <Paginate
+            currentPage={this.state.currentPage}
+            itemsPerPage={this.state.productsPerPage}
+            totalItems={this.state.totalProducts}
+            handleChange={this.handleChange}
+          />
+        </div>
         <ListProducts products={this.props.products} />
       </div>
     )

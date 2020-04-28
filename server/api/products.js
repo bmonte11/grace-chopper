@@ -1,15 +1,36 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
+const {Op} = require('sequelize')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
+  const {page, pageSize} = req.body
+  const offset = page * pageSize
+  const limit = pageSize
   try {
-    const products = await Product.findAll({})
-    res.json(products)
+    const products = await Product.findAll({
+      limit,
+      offset,
+      where: {
+        stock: {
+          [Op.gt]: 0
+        }
+      }
+    })
+    res.status(200).json(products)
   } catch (err) {
     next(err)
   }
 })
+
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const products = await Product.findAll({})
+//     res.json(products)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 router.get('/:productId', async (req, res, next) => {
   try {
