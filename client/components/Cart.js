@@ -44,7 +44,7 @@ class Cart extends Component {
           This is the calculation for the total price{' '}
         </div>
 
-        <div className="total">Gand Total </div>
+        <div className="total">Grand Total </div>
         <button
           type="button"
           onClick={async () => {

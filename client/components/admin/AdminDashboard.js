@@ -6,6 +6,7 @@ const AdminDashboard = props => {
   return (
     <div id="admin-dashboard">
       <div id="admin-dashboard-menu">
+        <NavLink to="/account">My Account</NavLink>
         <NavLink to="/account/admin/users">Users Dashboard</NavLink>
         <NavLink to="/account/admin/products">Products Dashboard</NavLink>
       </div>

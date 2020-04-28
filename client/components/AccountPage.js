@@ -1,14 +1,25 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
-import {AdminDashboard} from '.'
+import {NavLink, Switch, Route} from 'react-router-dom'
+import {AllOrders} from '.'
 
 const AccountPage = props => {
   return (
     <div id="account-page">
-      <h2>My Account</h2>
-      <div>Below link will be conditionally rendered laaaaater</div>
-      <NavLink to="/account/admin">Admin Dashboard</NavLink>
+      <div id="account-menu">
+        <NavLink to="/account/orders">My Orders</NavLink>
+        {props.user.isAdmin && (
+          <NavLink to="/account/admin">Admin Dashboard</NavLink>
+        )}
+      </div>
+      <div>
+        <h2>My Account</h2>
+        <div id="account-content">
+          <Switch>
+            <Route path="/account/orders" component={AllOrders} />
+          </Switch>
+        </div>
+      </div>
     </div>
   )
 }

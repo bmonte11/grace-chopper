@@ -19,7 +19,11 @@ class CartItem extends React.Component {
           <div>Loading...</div>
         ) : (
           <div>
-            <img src={item.photo} className="cart-card-img-top" alt="..." />
+            <img
+              src={item.product.photo}
+              className="cart-card-img-top"
+              alt="..."
+            />
             <div className="card-body">
               <h5 className="card-title">{item.name}</h5>
               <div className="card-text">Quantity: {item.quantity}</div>

@@ -34,8 +34,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={CreateAccount} />
         {/* Move account/admin routes into loggedin section once finished with development */}
-        <Route exact path="/account" component={AccountPage} />
         <Route path="/account/admin" component={AdminDashboard} />
+        <Route path="/account" component={AccountPage} />
         {/* <Route path="/orders" component={AllOrders} /> */}
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={AllProducts} />

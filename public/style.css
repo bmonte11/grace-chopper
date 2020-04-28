@@ -23,7 +23,7 @@ form div {
 #single-product {
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin: 100px auto;
   justify-content: center;
 }
 
@@ -36,6 +36,7 @@ form div {
 #single-product-addtocart {
   display: flex;
   flex-direction: row;
+  padding: 5px;
 }
 
 #single-product-addtocart div {
@@ -144,9 +145,22 @@ form div {
   padding: 20px;
   width: 220px;
 }
+
 .add-to-cart-button {
   border: solid 1px;
+  border-radius: 5px;
   padding: 3px;
+  box-shadow: 1px 1px 2px 0.4px rgba(0, 0, 0, 0.4);
+}
+
+.add-to-cart-button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #343a40;
+}
+
+.change-quantity:hover {
+  cursor: pointer;
 }
 
 .card {
@@ -192,3 +206,14 @@ form div {
   display: flex;
   flex-direction: column;
 } */
+
+#account-page {
+  display: flex;
+  flex-direction: row;
+}
+
+#account-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}

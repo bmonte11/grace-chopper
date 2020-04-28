@@ -5,7 +5,7 @@ import SingleOrder from './SingleOrder'
 export default withRouter(function({orders}) {
   return (
     <div>
-      <h1>Your Orders</h1>
+      <h1>My Orders</h1>
       <ul className="list-group">
         {orders.map(order => (
           <div className="card" id="orders-container" key={order.id}>
