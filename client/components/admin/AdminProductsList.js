@@ -10,8 +10,8 @@ class AdminProductsList extends Component {
 
   render() {
     return (
-      <div id="admin-products-list">
-        <table>
+      <div id="admin-products-list" className="admin-content">
+        <table id="products-table">
           <thead>
             <tr>
               <th></th>

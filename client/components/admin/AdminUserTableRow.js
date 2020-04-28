@@ -37,12 +37,11 @@ class UserTableRow extends Component {
   render() {
     const {user} = this.props
     return (
-      <tr>
+      <tr className="table-row">
         <td>{user.id}</td>
         <td>{this.handleAdminRendering(this.props.editUsers, user)}</td>
         <td>{user.email}</td>
         <td>{`${user.firstName} ${user.lastName}`}</td>
-        <td>Orders.....Umm</td>
       </tr>
     )
   }

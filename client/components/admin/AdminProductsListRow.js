@@ -3,9 +3,8 @@ import {withRouter} from 'react-router-dom'
 
 const AdminProductsListRow = withRouter(props => {
   const {product} = props
-  const path = `/account/admin/products/${product.id}`
   return (
-    <tr onClick={() => props.history.push(path)}>
+    <tr>
       <td className="products-list-photo">
         <img src={product.photo} />
       </td>

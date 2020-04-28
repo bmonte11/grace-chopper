@@ -25,19 +25,20 @@ class UsersList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="admin-content">
         <div id="users-header">
           <h2>Users</h2>
-          <div onClick={this.toggleEditUsers}>Edit</div>
+          <div className="link-button" onClick={this.toggleEditUsers}>
+            Edit
+          </div>
         </div>
         <table id="users-table">
           <thead>
-            <tr>
+            <tr className="table-row">
               <th>ID</th>
               <th>Account Type</th>
               <th>Email</th>
               <th>Name</th>
-              <th>Orders</th>
               <th></th>
             </tr>
             {this.props.users.map(user => {
