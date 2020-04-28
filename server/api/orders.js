@@ -90,7 +90,8 @@ router.post('/cart', async (req, res, next) => {
         product: {
           name: product.name,
           price: product.price,
-          productId: product.id
+          productId: product.id,
+          photo: product.photo
         },
         quantity: req.body.quantity
       }
