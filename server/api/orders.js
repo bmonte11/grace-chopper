@@ -4,6 +4,8 @@ module.exports = router
 
 router.get('/cart', async (req, res, next) => {
   try {
+    console.log(req.user, 'should be false')
+
     if (req.user) {
       const cart = await Order.findOrCreate({
         where: {
@@ -27,8 +29,9 @@ router.get('/cart', async (req, res, next) => {
       })
       // const cart = data
       // req.session.cart = cart
-      res.send(cart)
+      res.send(cart[0])
     } else {
+      console.log('req.session.cart', req.session.cart)
       res.send(req.session.cart)
     }
   } catch (err) {
@@ -51,38 +54,48 @@ router.put('/:orderId', async (req, res, next) => {
 })
 
 router.post('/cart', async (req, res, next) => {
-  try {
-    const newItem = await Item.findOrCreate({
-      where: {
-        orderId: req.body.orderId,
-        productId: req.body.productId
-      },
-      defaults: {
-        orderId: req.body.orderId,
-        productId: req.body.productId,
+  if (req.user) {
+    try {
+      const newItem = await Item.findOrCreate({
+        where: {
+          orderId: req.body.orderId,
+          productId: req.body.productId
+        },
+        defaults: {
+          orderId: req.body.orderId,
+          productId: req.body.productId,
+          quantity: req.body.quantity
+        }
+      })
+      const item = newItem[0].dataValues
+      if (!newItem[1]) {
+        Item.update(
+          {quantity: item.quantity + req.body.quantity},
+          {
+            where: {
+              id: item.id
+            }
+          }
+        )
+      }
+      res.send(newItem)
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    try {
+      const product = await Product.findByPk(req.body.productId)
+      const item = {
+        product: {name: product.name, price: product.price},
         quantity: req.body.quantity
       }
-    })
-    const item = newItem[0].dataValues
-    if (!newItem[1]) {
-      Item.update(
-        {quantity: item.quantity + req.body.quantity},
-        {
-          where: {
-            id: item.id
-          }
-        }
-      )
+      req.session.cart.items.push(item)
+      res.send(req.session.cart)
+    } catch (err) {
+      next(err)
     }
-    res.send(newItem)
-  } catch (err) {
-    next(err)
   }
 })
-
-//   Book.update(
-//  {title: req.body.title},
-//  {where: req.params.bookId}
 
 router.delete('/cart', async (req, res, next) => {
   try {

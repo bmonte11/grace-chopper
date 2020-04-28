@@ -5,6 +5,7 @@ const SET_CART = 'SET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 
 export const setCart = cart => {
+  console.log('cart in setCart', cart)
   return {
     type: SET_CART,
     cart
@@ -22,7 +23,8 @@ export function fetchCart() {
   return async function(dispatch) {
     try {
       const {data} = await axios.get('/api/orders/cart')
-      const cart = data[0]
+      const cart = data
+      console.log(cart, 'cart in thunk')
       dispatch(setCart(cart))
     } catch (err) {
       console.log(err)
@@ -91,6 +93,7 @@ export function checkoutCart(cart) {
 }
 
 export default function(state = {items: []}, action) {
+  console.log('the cart in the reducer', action.cart)
   switch (action.type) {
     case SET_CART:
       return action.cart
