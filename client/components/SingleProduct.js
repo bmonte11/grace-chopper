@@ -24,16 +24,6 @@ class SingleProduct extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const {product, cart} = this.props
-    // console.log('orderId', cart.orderId)
-    // if (!cart.id && cart.items[0]) {
-    //   const found = cart.items.find(
-    //     item => item.product.productId === this.props.match.params.productId
-    //   )
-    //   console.log('found', found)
-    //   if (found) {
-    //     this.props.updateQuantity(found, this.state.quantityToAdd)
-    //   }
-    // }
 
     try {
       let orderItem = {

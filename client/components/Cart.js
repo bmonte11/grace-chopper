@@ -16,7 +16,6 @@ class Cart extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log(this.props.user, 'user')
     if (this.props.user.id) {
       this.props.checkoutCart(this.props.cart)
       this.props.history.push('/order/confirmation')
