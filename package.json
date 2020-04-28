@@ -1,9 +1,9 @@
 {
-	"name": "grace-chopper",
+	"name": "boilermaker",
 	"version": "2.0.0",
 	"description": "Some boilerplate code to get you started - get shakin'!",
 	"engines": {
-		"node": ">= 7.0.0"
+		"node": "~12.11.1"
 	},
 	"main": "index.js",
 	"scripts": {
@@ -28,15 +28,8 @@
 		}
 	},
 	"lint-staged": {
-		"*.{js,jsx}": [
-			"prettier --write",
-			"npm run lint-fix",
-			"git add"
-		],
-		"*.{css,scss,json,md}": [
-			"prettier --write",
-			"git add"
-		]
+		"*.{js,jsx}": [ "prettier --write", "npm run lint-fix", "git add" ],
+		"*.{css,scss,json,md}": [ "prettier --write", "git add" ]
 	},
 	"author": "Fullstack Academy of Code",
 	"license": "MIT",
@@ -46,7 +39,6 @@
 		"connect-session-sequelize": "^6.0.0",
 		"express": "^4.16.4",
 		"express-session": "^1.15.1",
-		"faker": "^4.1.0",
 		"history": "^4.9.0",
 		"morgan": "^1.9.1",
 		"passport": "^0.4.0",
@@ -61,7 +53,7 @@
 		"redux": "^4.0.1",
 		"redux-logger": "^3.0.6",
 		"redux-thunk": "^2.3.0",
-		"sequelize": "^5.21.6",
+		"sequelize": "^5.3.1",
 		"socket.io": "^2.2.0"
 	},
 	"devDependencies": {
@@ -94,8 +86,8 @@
 		"lint-staged": "^8.1.5",
 		"mocha": "^6.1.4",
 		"nodemon": "^1.18.3",
-		"npm-merge-driver": "^2.3.6",
-		"prettier": "^1.19.1",
+		"npm-merge-driver": "^2.3.5",
+		"prettier": "1.11.1",
 		"react-test-renderer": "^16.4.2",
 		"redux-devtools-extension": "^2.13.5",
 		"redux-mock-store": "^1.5.3",
