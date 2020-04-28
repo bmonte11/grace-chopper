@@ -86,7 +86,11 @@ router.post('/cart', async (req, res, next) => {
     try {
       const product = await Product.findByPk(req.body.productId)
       const item = {
-        product: {name: product.name, price: product.price},
+        product: {
+          name: product.name,
+          price: product.price,
+          productId: product.id
+        },
         quantity: req.body.quantity
       }
       req.session.cart.items.push(item)

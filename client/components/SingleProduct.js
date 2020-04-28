@@ -4,7 +4,7 @@ import {fetchSingleProduct} from '../store/single-product'
 import {fetchProductReviews} from '../store/single-product-reviews'
 import {SingleReview} from '.'
 import changeQuantity from '../utils/changeQuantity'
-import {postToCart, fetchCart} from '../store/cart'
+import {postToCart, fetchCart, updateQuantity} from '../store/cart'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -23,6 +23,19 @@ class SingleProduct extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    const {product, cart} = this.props
+    console.log('orderId', cart.orderId)
+    if (!cart.orderId) {
+      if (cart.items[0].product) {
+        const found = cart.items.find(
+          item => item.product.productId === this.props.match.params.productId
+        )
+        console.log('found', found)
+        if (found) {
+          this.props.updateQuantity(found, this.state.quantityToAdd)
+        }
+      }
+    }
     try {
       let orderItem = {
         quantity: this.state.quantityToAdd,
@@ -85,7 +98,8 @@ const mapDispatch = dispatch => ({
   getProduct: id => dispatch(fetchSingleProduct(id)),
   getReviews: id => dispatch(fetchProductReviews(id)),
   updateCart: orderItem => dispatch(postToCart(orderItem)),
-  getCart: () => dispatch(fetchCart())
+  getCart: () => dispatch(fetchCart()),
+  updateQuantity: (item, quantity) => dispatch(updateQuantity(item, quantity))
 })
 
 export default connect(mapState, mapDispatch)(SingleProduct)

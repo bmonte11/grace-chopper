@@ -3,6 +3,7 @@ import {fetchProducts} from './products'
 
 const SET_CART = 'SET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
 
 export const setCart = cart => {
   console.log('cart in setCart', cart)
@@ -16,6 +17,14 @@ export const addToCart = item => {
   return {
     type: ADD_TO_CART,
     item
+  }
+}
+
+export const updateQuantity = function(item, quantityToAdd) {
+  return {
+    type: UPDATE_QUANTITY,
+    item,
+    quantityToAdd
   }
 }
 
@@ -99,6 +108,18 @@ export default function(state = {items: []}, action) {
       return action.cart
     case ADD_TO_CART:
       return {...state, items: [...state.items, action.item]}
+    case UPDATE_QUANTITY:
+      return {
+        ...state,
+        items: state.items.map(function(item) {
+          if (item.id === action.item.id) {
+            item.quantity = item.quantity + action.quantityToAdd
+            return item
+          } else {
+            return item
+          }
+        })
+      }
     default:
       return state
   }
