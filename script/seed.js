@@ -108,20 +108,14 @@ const makeFakeUsers = num => {
   }
 }
 
-makeFakeOrders(10)
+makeFakeOrders(25)
 // userId
-makeFakeProducts(10)
-makeFakeItems(10)
+makeFakeProducts(100)
+makeFakeItems(100)
 // productId orderId
-makeFakeReviews(10)
+makeFakeReviews(300)
 // userId productId
-makeFakeUsers(10)
-
-// console.log(fakeOrders);
-// console.log(fakeProducts);
-// console.log(fakeItems);
-// console.log(fakeReviews);
-// console.log(fakeUsers)
+makeFakeUsers(50)
 
 async function Seed() {
   await db.sync({force: true})
