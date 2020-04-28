@@ -11,3 +11,11 @@ router.put('/:itemId', async (req, res, next) => {
     next(error)
   }
 })
+router.post('/', async (req, res, next) => {
+  try {
+    const item = await Item.create(req.body)
+    res.status(201).send(item)
+  } catch (error) {
+    next(error)
+  }
+})

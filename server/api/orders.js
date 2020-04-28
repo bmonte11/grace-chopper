@@ -103,9 +103,8 @@ router.post('/cart', async (req, res, next) => {
 
 router.post('/guest', async (req, res, next) => {
   try {
-    await Order.create({
-      userId: -1
-    })
+    const response = await Order.create(req.body)
+    res.status(201).send(response)
   } catch (error) {
     console.error(error)
   }

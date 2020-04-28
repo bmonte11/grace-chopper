@@ -104,35 +104,36 @@ export function checkoutCart(cart) {
 export function checkoutGuest(cart) {
   return async function(dispatch) {
     console.log('inside thunk checkoutGuest')
-    const newOrder = await axios.post(`/api/orders/guest`, {
+    const response = await axios.post(`/api/orders/guest`, {
       status: 'shipping',
       userId: -1
     })
+    const newOrder = response.data
     console.log(newOrder, 'new order from checkoutGuest')
-    // Promise.all(
-    //   cart.items.map(item => {
-    //     return axios.post('/api/items', {
-    //       salePrice: item.product.price,
-    //       quantity: item.quantity,
-    //       productId: item.product.productId,
-    //       orderId: newOrder.id
-    //     })
-    //   })
-    // )
-    //   .then(
-    //     Promise.all(
-    //       cart.items.map(item => {
-    //         return axios.put(
-    //           `/api/products/${item.product.productId}/decrement`,
-    //           {
-    //             quantity: item.quantity
-    //           }
-    //         )
-    //       })
-    //     )
-    //   )
-    //   .catch(console.log('guest error'))
-    dispatch(fetchCart())
+    Promise.all(
+      cart.items.map(item => {
+        return axios.post('/api/items', {
+          salePrice: item.product.price,
+          quantity: item.quantity,
+          productId: item.product.productId,
+          orderId: newOrder.id
+        })
+      })
+    )
+      .then(
+        Promise.all(
+          cart.items.map(item => {
+            return axios.put(
+              `/api/products/${item.product.productId}/decrement`,
+              {
+                quantity: item.quantity
+              }
+            )
+          })
+        )
+      )
+      .then(() => axios.put('/api/guest/cart'))
+      .catch(error => console.error(error))
     dispatch(fetchProducts())
   }
 }
