@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import {CartItem} from '.'
 import {fetchCart, checkoutCart, checkoutGuest} from '../store/cart'
 import {connect} from 'react-redux'
@@ -16,7 +15,6 @@ class Cart extends Component {
   }
 
   getTotal() {
-    console.log(this.props.cart.items)
     return this.props.cart.items.reduce(
       (a, b) => a + b.product.price * b.quantity,
       0
@@ -41,6 +39,7 @@ class Cart extends Component {
 
   render() {
     let cart = this.props.cart
+    console.log(cart)
     return (
       <div id="cart">
         <h1>Cart</h1>

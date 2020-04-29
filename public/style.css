@@ -243,7 +243,7 @@ form div {
 }
 
 .cart-button {
-  border: 1px solid black;
+  border: 1px solid grey;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
@@ -256,7 +256,7 @@ form div {
 }
 
 #cart-summary {
-  border: 1px solid black;
+  border: 1px solid grey;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
   width: 200px;

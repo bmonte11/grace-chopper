@@ -137,9 +137,16 @@ router.get('/', async (req, res, next) => {
 
 router.delete('/cart', async (req, res, next) => {
   try {
-    const item = await Item.findByPk(req.body.itemId)
-    await item.destroy()
-    res.status(204).send(item)
+    if (req.user) {
+      const item = await Item.findByPk(req.body.itemId)
+      await item.destroy()
+      res.status(204).send(item)
+    } else {
+      req.session.cart.items = req.session.cart.items.filter(
+        item => item.productId !== req.body.itemId
+      )
+      res.sendStatus(200)
+    }
   } catch (err) {
     next(err)
   }
