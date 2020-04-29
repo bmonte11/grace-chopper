@@ -32,7 +32,6 @@ export function fetchCart() {
     try {
       const {data} = await axios.get('/api/orders/cart')
       const cart = data
-      console.log(cart, 'cart in thunk')
       dispatch(setCart(cart))
     } catch (err) {
       console.log(err)
