@@ -23,7 +23,12 @@ class AllProducts extends Component {
   }
 
   handleChange(num) {
-    this.setState({productsPerPage: num})
+    this.setState({currentPage: num})
+    const pages = {
+      page: this.state.currentPage,
+      pageSize: this.state.productsPerPage
+    }
+    this.props.getProducts(pages)
   }
 
   render() {
