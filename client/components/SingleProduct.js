@@ -4,7 +4,7 @@ import {fetchSingleProduct} from '../store/single-product'
 import {fetchProductReviews} from '../store/single-product-reviews'
 import {SingleReview} from '.'
 import changeQuantity from '../utils/changeQuantity'
-import {postToCart, fetchCart} from '../store/cart'
+import {postToCart, fetchCart, updateQuantity} from '../store/cart'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -23,6 +23,8 @@ class SingleProduct extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    const {product, cart} = this.props
+
     try {
       let orderItem = {
         quantity: this.state.quantityToAdd,
@@ -50,10 +52,20 @@ class SingleProduct extends Component {
             <h2>{product.name}</h2>
             <h3>{`$${product.price / 100}`}</h3>
             <div id="single-product-addtocart">
-              <div onClick={() => this.changeQuantity('decrement')}>-</div>
+              <div
+                className="change-quantity"
+                onClick={() => this.changeQuantity('decrement')}
+              >
+                -
+              </div>
               <div>{this.state.quantityToAdd}</div>
               {/* if this number is greater than database number, disable button */}
-              <div onClick={() => this.changeQuantity('increment')}>+</div>
+              <div
+                className="change-quantity"
+                onClick={() => this.changeQuantity('increment')}
+              >
+                +
+              </div>
               <div
                 className="add-to-cart-button"
                 onClick={e => this.handleSubmit(e)}
@@ -85,7 +97,8 @@ const mapDispatch = dispatch => ({
   getProduct: id => dispatch(fetchSingleProduct(id)),
   getReviews: id => dispatch(fetchProductReviews(id)),
   updateCart: orderItem => dispatch(postToCart(orderItem)),
-  getCart: () => dispatch(fetchCart())
+  getCart: () => dispatch(fetchCart()),
+  updateQuantity: (item, quantity) => dispatch(updateQuantity(item, quantity))
 })
 
 export default connect(mapState, mapDispatch)(SingleProduct)

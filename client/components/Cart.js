@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import {CartItem} from '.'
-import {fetchCart, checkoutCart} from '../store/cart'
+import {fetchCart, checkoutCart, checkoutGuest} from '../store/cart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
@@ -16,27 +16,40 @@ class Cart extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.checkoutCart(this.props.cart)
-    this.props.history.push('/order/confirmation')
+    if (this.props.user.id) {
+      this.props.checkoutCart(this.props.cart)
+      this.props.history.push('/order/confirmation')
+    } else {
+      this.props.guestCheckout(this.props.cart)
+      this.props.history.push('/order/confirmation')
+    }
   }
 
   render() {
     let cart = this.props.cart
     return (
       <div>
-        <h1>This is the Cart</h1>
-        <div className="theCart">
+        <h1>Cart</h1>
+        <div className="list-group list-group-sm">
           {!cart.items ? (
             <div>No items in cart</div>
           ) : (
             cart.items.map(item => {
-              return <CartItem item={item} key={item.id} />
+              return (
+                <CartItem
+                  item={item}
+                  key={item.id}
+                  className="list-group-item"
+                />
+              )
             })
           )}
         </div>
         <div className="total">
           This is the calculation for the total price{' '}
         </div>
+
+        <div className="total">Grand Total </div>
         <button
           type="button"
           onClick={async () => {
@@ -56,14 +69,16 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
-    checkoutCart: cart => dispatch(checkoutCart(cart))
+    checkoutCart: cart => dispatch(checkoutCart(cart)),
+    guestCheckout: cart => dispatch(checkoutGuest(cart))
   }
 }
 
