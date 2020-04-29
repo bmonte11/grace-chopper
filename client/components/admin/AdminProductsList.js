@@ -14,7 +14,7 @@ class AdminProductsList extends Component {
         <table id="products-table">
           <thead>
             <tr>
-              <th></th>
+              <th />
               <th>ID</th>
               <th>Product Name</th>
               <th>Stock</th>

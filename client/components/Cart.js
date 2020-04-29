@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import {CartItem} from '.'
-import {fetchCart, checkoutCart} from '../store/cart'
+import {fetchCart, checkoutCart, checkoutGuest} from '../store/cart'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
@@ -16,8 +16,13 @@ class Cart extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.checkoutCart(this.props.cart)
-    this.props.history.push('/order/confirmation')
+    if (this.props.user.id) {
+      this.props.checkoutCart(this.props.cart)
+      this.props.history.push('/order/confirmation')
+    } else {
+      this.props.guestCheckout(this.props.cart)
+      this.props.history.push('/order/confirmation')
+    }
   }
 
   render() {
@@ -64,14 +69,16 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
-    checkoutCart: cart => dispatch(checkoutCart(cart))
+    checkoutCart: cart => dispatch(checkoutCart(cart)),
+    guestCheckout: cart => dispatch(checkoutGuest(cart))
   }
 }
 

@@ -39,7 +39,7 @@ class UsersList extends Component {
               <th>Account Type</th>
               <th>Email</th>
               <th>Name</th>
-              <th></th>
+              <th />
             </tr>
             {this.props.users.map(user => {
               return (
