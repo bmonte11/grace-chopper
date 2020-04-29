@@ -44,7 +44,7 @@ class Cart extends Component {
     return (
       <div id="cart">
         <h1>Cart</h1>
-        <div className="list-group list-group-sm">
+        <div className="list-group list-group-sm" id="cart-products">
           {!cart.items ? (
             <div>No items in cart</div>
           ) : (
@@ -59,10 +59,17 @@ class Cart extends Component {
             })
           )}
         </div>
-        <div className="total">{`Total: $${this.state.total}`}</div>
-        <button type="submit" onClick={this.handleSubmit}>
-          Checkout
-        </button>
+        <div id="cart-summary">
+          <div className="total">{`Total: $${this.state.total}`}</div>
+          <button
+            className="cart-button"
+            id="checkout-button"
+            type="submit"
+            onClick={this.handleSubmit}
+          >
+            Checkout
+          </button>
+        </div>
       </div>
     )
   }

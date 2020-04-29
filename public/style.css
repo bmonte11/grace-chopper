@@ -157,6 +157,7 @@ form div {
   cursor: pointer;
   color: white;
   background-color: #343a40;
+  transition: 0.3s;
 }
 
 .change-quantity:hover {
@@ -176,9 +177,14 @@ form div {
   max-width: 8em;
 }
 
-/* #products-card {
+.products-card {
+  background-color: gray;
+  margin: 0.5em;
+}
 
-} */
+.products-card:hover {
+  cursor: pointer;
+}
 
 #all-products-container {
   display: flex;
@@ -197,11 +203,6 @@ form div {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-}
-
-#products-card {
-  background-color: gray;
-  margin: 0.5em;
 }
 
 #orders-container {
@@ -236,3 +237,51 @@ form div {
   align-content: center;
   margin: 50px 50px;
 }
+
+#checkout-button {
+  width: 100px;
+}
+
+.cart-button {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.cart-button:hover {
+  cursor: pointer;
+  background-color: #343a40;
+  color: white;
+  transition: 0.3s;
+}
+
+#cart-summary {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+#cart-products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-card {
+  margin: 20px 20px;
+}
+/* #343a40 */

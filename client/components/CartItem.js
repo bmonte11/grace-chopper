@@ -14,11 +14,11 @@ class CartItem extends React.Component {
   render() {
     const {item} = this.props
     return (
-      <div className="card">
+      <div className="card cart-card">
         {!item.product ? (
           <div>Loading...</div>
         ) : (
-          <div>
+          <div className="cart-item">
             <img
               src={item.product.photo}
               className="cart-card-img-top"
@@ -31,6 +31,7 @@ class CartItem extends React.Component {
               <div>Item Total: ${item.product.price * item.quantity}</div>
               <div>
                 <button
+                  className="cart-button"
                   type="submit"
                   onClick={() => this.handleRemove(this.props.item.id)}
                 >
