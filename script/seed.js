@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 'use strict'
 
 const db = require('../server/db')
@@ -57,6 +58,42 @@ const pickRandomStatus = () => {
   }
 }
 
+const pickRandomPhoto = () => {
+  const num = getRandomInt(1, 15)
+  switch (num) {
+    case 1:
+      return 'https://images.unsplash.com/photo-1577431758723-481972426a62?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 2:
+      return 'https://images.unsplash.com/photo-1570643509348-4fe54c998566?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 3:
+      return 'https://images.unsplash.com/photo-1544965838-54ef8406f868?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 4:
+      return 'https://images.unsplash.com/photo-1569606665155-6f0c90944f28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 5:
+      return 'https://images.unsplash.com/photo-1573465895933-b1e960ecad7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 6:
+      return 'https://images.unsplash.com/photo-1586881226587-e6c847af684c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 7:
+      return 'https://images.unsplash.com/photo-1506915792737-4573cbd01da1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 8:
+      return 'https://images.unsplash.com/photo-1560291544-bc203f6f95be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 9:
+      return 'https://images.unsplash.com/photo-1518095311381-8dce8cfe3ab4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 10:
+      return 'https://images.unsplash.com/photo-1588088231287-7df034a572fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 11:
+      return 'https://images.unsplash.com/photo-1548187009-a55c567e6f1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 12:
+      return 'https://images.unsplash.com/photo-1523299412748-aa5ecad3d995?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 13:
+      return 'https://images.unsplash.com/photo-1586121381481-a26fe756e2c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+    case 14:
+      return 'https://cdn.shopify.com/s/files/1/1041/0210/products/IMG_9561_2048x.jpg?v=1575552605'
+    default:
+      return '/images/default-knife.jpg'
+  }
+}
+
 const makeFakeOrders = num => {
   for (let i = 0; i < num; i++) {
     fakeOrders.push({
@@ -71,10 +108,10 @@ const makeFakeProducts = num => {
       name: faker.commerce.productName() + ' Knife',
       description: faker.company.catchPhrase(),
       stock: getRandomInt(1, 20),
-      price: getRandomInt(30, 1000),
+      price: getRandomInt(30, 500),
       category: pickRandomCategory(),
       origin: pickRandomOrigin(),
-      photo: '/images/default-knife.jpg'
+      photo: pickRandomPhoto()
     })
   }
 }
@@ -82,7 +119,7 @@ const makeFakeProducts = num => {
 const makeFakeItems = num => {
   for (let i = 0; i < num; i++) {
     fakeItems.push({
-      salePrice: getRandomInt(30, 1000),
+      salePrice: getRandomInt(30, 500),
       quantity: getRandomInt(1, 20)
     })
   }

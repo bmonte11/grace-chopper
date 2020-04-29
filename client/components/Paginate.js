@@ -1,5 +1,4 @@
 import React from 'react'
-
 import Pagination from 'react-bootstrap/Pagination'
 
 const Paginate = ({currentPage, itemsPerPage, totalItems, handleChange}) => {

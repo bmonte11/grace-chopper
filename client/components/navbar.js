@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn, cart}) => {
+const Navbar = ({handleClick, isLoggedIn}) => {
   return (
     <React.Fragment>
       <div>

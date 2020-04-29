@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-image: url('https://images.pexels.com/photos/301378/pexels-photo-301378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
 }
 
 a {
@@ -187,6 +188,11 @@ form div {
   margin: 0.5em;
 }
 
+#product-page-options {
+  display: flex;
+  justify-content: start;
+}
+
 #orders-container {
   width: 100%;
   margin: 0.5em 0.5em 0.5em 0.5em;
@@ -206,4 +212,41 @@ form div {
   display: flex;
   flex-direction: column;
   padding: 20px;
+}
+
+.jumbotron {
+  background-image: url('https://images.unsplash.com/photo-1577398628388-516477602b3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
+  color: black;
+}
+
+.display-1 {
+  color: darkslateblue;
+  font-weight: 500;
+}
+
+.lead {
+  font-weight: 900;
+  color: darkslateblue;
+}
+
+#jumbotron-slogan {
+  font-weight: 900;
+  color: darkslateblue;
+  text-justify: auto;
+}
+
+#homepage-container {
+  height: 100%;
+}
+
+h1 {
+  color: lightgray;
+}
+
+h2 {
+  color: lightgray;
+}
+
+div {
+  color: lightgray;
 }
