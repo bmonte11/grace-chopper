@@ -10,7 +10,7 @@ class AllProducts extends Component {
       currentPage: 1,
       productsPerPage: 25,
       // keep track of total items in database to send to pagination comopnent
-      totalProducts: 100
+      totalProducts: 200
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -19,12 +19,11 @@ class AllProducts extends Component {
       page: this.state.currentPage,
       pageSize: this.state.productsPerPage
     }
-    console.log('PAGES!!!:', pages)
     this.props.getProducts(pages)
   }
 
-  handleChange = event => {
-    this.setState({productsPerPage: event.target.value})
+  handleChange(num) {
+    this.setState({productsPerPage: num})
   }
 
   render() {
@@ -45,7 +44,9 @@ class AllProducts extends Component {
 }
 
 const mapState = state => {
-  return {products: state.products}
+  return {
+    products: state.products
+  }
 }
 
 const mapDispatch = dispatch => {

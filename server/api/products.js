@@ -4,26 +4,17 @@ const {isAdmin} = require('./utils')
 const {Op} = require('sequelize')
 module.exports = router
 
-// router.post('/', async (req, res, next) => {
-//   try {
-//     console.log('REQ.BODY!!!:', req.body)
-//     const {page, pageSize} = req.body
-//     const off = page * pageSize
-//     const lim = pageSize
-//     const products = await Product.findAll({
-//       offset: off,
-//       limit: lim
-//     })
-//     res.status(200).json(products)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-router.get('/', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll({})
-    res.json(products)
+    console.log('REQ.BODY!!!:', req.body)
+    const {page, pageSize} = req.body
+    const off = page * pageSize
+    const lim = pageSize
+    const products = await Product.findAndCountAll({
+      offset: off,
+      limit: lim
+    })
+    res.status(200).json(products)
   } catch (err) {
     next(err)
   }

@@ -1,10 +1,11 @@
 import React from 'react'
-import Pagination from 'react-bootstrap/Pagination'
-import PageItem from 'react-bootstrap/PageItem'
 
-const Paginate = ({currentPage, itemsPerPage, totalItems, handleChange}) => {
+import Pagination from 'react-bootstrap/Pagination'
+
+const Paginate = ({currentPage, itemsPerPage, totalItems, handleClick}) => {
   let active = currentPage
   let items = []
+
   for (let number = 1; number <= totalItems / itemsPerPage; number++) {
     items.push(
       <Pagination.Item key={number} active={number === active}>
@@ -16,7 +17,6 @@ const Paginate = ({currentPage, itemsPerPage, totalItems, handleChange}) => {
   const paginationBasic = (
     <div>
       <Pagination>{items}</Pagination>
-      <br />
     </div>
   )
 
