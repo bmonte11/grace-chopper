@@ -13,7 +13,6 @@ class CartItem extends React.Component {
   }
   render() {
     const {item} = this.props
-    console.log(item)
     return (
       <div className="card">
         {!item.product ? (
