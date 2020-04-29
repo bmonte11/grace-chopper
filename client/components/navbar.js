@@ -82,7 +82,7 @@ const Navbar = ({handleClick, isLoggedIn, cart}) => {
               <ul className="navbar-nav mr-auto" />
               <li className="nav-item">
                 <NavLink
-                  to="/orders"
+                  to="/account/orders"
                   className="nav-link"
                   activeClassName="active"
                 >

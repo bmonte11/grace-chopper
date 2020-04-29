@@ -120,7 +120,17 @@ router.get('/', async (req, res, next) => {
         status: {
           [Op.in]: ['shipping', 'completed']
         }
-      }
+      },
+      include: [
+        {
+          model: Item,
+          include: [
+            {
+              model: Product
+            }
+          ]
+        }
+      ]
     })
     res.status(200).json(orders)
   } catch (err) {

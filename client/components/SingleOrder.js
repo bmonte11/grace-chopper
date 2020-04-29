@@ -4,11 +4,11 @@ import {fetchSingleOrder} from '../store/singleOrder'
 
 class SingleOrder extends Component {
   componentDidMount() {
-    this.props.getSingleOrder(this.props.orderId)
+    // this.props.getSingleOrder(this.props.orderId);
   }
 
   render() {
-    const items = this.props.singleOrder.items || []
+    const items = this.props.order.items || []
     return items.map(item => {
       return (
         <div className="card" id="orders" key={item.id}>

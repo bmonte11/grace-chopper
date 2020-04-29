@@ -18,7 +18,7 @@ export default withRouter(function({orders}) {
                 {order.status === 'completed' ? 'Delivered' : 'Shipped'}
               </h5>
               <div className="d-flex align-content-start flex-wrap">
-                <SingleOrder orderId={order.id} />
+                <SingleOrder order={order} />
               </div>
               <a href="#" className="btn btn-primary">
                 Order Details
