@@ -13,7 +13,7 @@ const AccountPage = props => {
         )}
       </div>
       <div>
-        <h2>My Account</h2>
+        <h1>My Account</h1>
         <div id="account-content">
           <Switch>
             <Route path="/account/orders" component={AllOrders} />
