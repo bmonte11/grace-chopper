@@ -5,8 +5,6 @@ module.exports = router
 
 router.get('/cart', async (req, res, next) => {
   try {
-    console.log(req.user, 'should be false')
-
     if (req.user) {
       const cart = await Order.findOrCreate({
         where: {
@@ -32,7 +30,6 @@ router.get('/cart', async (req, res, next) => {
       // req.session.cart = cart
       res.send(cart[0])
     } else {
-      console.log('req.session.cart', req.session.cart)
       res.send(req.session.cart)
     }
   } catch (err) {
@@ -120,7 +117,17 @@ router.get('/', async (req, res, next) => {
         status: {
           [Op.in]: ['shipping', 'completed']
         }
-      }
+      },
+      include: [
+        {
+          model: Item,
+          include: [
+            {
+              model: Product
+            }
+          ]
+        }
+      ]
     })
     res.status(200).json(orders)
   } catch (err) {

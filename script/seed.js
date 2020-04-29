@@ -71,7 +71,7 @@ const makeFakeProducts = num => {
       name: faker.commerce.productName() + ' Knife',
       description: faker.company.catchPhrase(),
       stock: getRandomInt(1, 20),
-      price: getRandomInt(300, 10000),
+      price: getRandomInt(30, 1000),
       category: pickRandomCategory(),
       origin: pickRandomOrigin(),
       photo: '/images/default-knife.jpg'

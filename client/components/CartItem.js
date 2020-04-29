@@ -25,9 +25,11 @@ class CartItem extends React.Component {
               alt="..."
             />
             <div className="card-body">
-              <h5 className="card-title">{item.name}</h5>
+              <h5 className="card-title">{item.product.name}</h5>
               <div className="card-text">Quantity: {item.quantity}</div>
-              <div className="total">Item Total: {item.price} </div>
+              <div className="total">
+                Item Total: {item.product.price.toFixed(2)}{' '}
+              </div>
               <div>
                 <button
                   type="submit"
