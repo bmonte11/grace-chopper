@@ -32,10 +32,9 @@ export function fetchCart() {
     try {
       const {data} = await axios.get('/api/orders/cart')
       const cart = data
-      console.log(cart, 'cart in thunk')
       dispatch(setCart(cart))
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 }
@@ -52,13 +51,12 @@ export function postToCart(orderItem) {
         dispatch(addToCart(response.data))
       }
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 }
 
 export function removeItem(itemId) {
-  console.log('itemId in thunk', itemId)
   return async function(dispatch) {
     try {
       const response = await axios.delete('/api/orders/cart', {
@@ -70,7 +68,7 @@ export function removeItem(itemId) {
         dispatch(fetchCart())
       }
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 }
@@ -94,8 +92,7 @@ export function checkoutCart(cart) {
         )
       )
       .then(axios.put(`/api/orders/${cart.id}`, {status: 'shipping'}))
-      // How do we error handle
-      .catch(console.log('error'))
+      .catch(error => console.error(error))
     dispatch(fetchCart())
     dispatch(fetchProducts())
   }
@@ -103,13 +100,11 @@ export function checkoutCart(cart) {
 
 export function checkoutGuest(cart) {
   return async function(dispatch) {
-    console.log('inside thunk checkoutGuest')
     const response = await axios.post(`/api/orders/guest`, {
       status: 'shipping',
       userId: -1
     })
     const newOrder = response.data
-    console.log(newOrder, 'new order from checkoutGuest')
     Promise.all(
       cart.items.map(item => {
         return axios.post('/api/items', {

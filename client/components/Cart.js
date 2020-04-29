@@ -48,17 +48,7 @@ class Cart extends Component {
         <div className="total">
           This is the calculation for the total price{' '}
         </div>
-
         <div className="total">Grand Total </div>
-        <button
-          type="button"
-          onClick={async () => {
-            await axios.get('/api/orders/cart')
-          }}
-        >
-          {' '}
-          On Click
-        </button>
         <button type="submit" onClick={this.handleSubmit}>
           Checkout
         </button>
