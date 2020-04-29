@@ -19,7 +19,6 @@ export default withRouter(function({products, history}) {
             <div className="card-body">
               <h5 className="card-title">{product.name}</h5>
               <p className="card-text">${product.price.toFixed(2)}</p>
-              <p className="card-text">{product.rating}/5 stars</p>
             </div>
           </li>
         ))}
