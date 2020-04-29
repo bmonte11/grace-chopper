@@ -108,14 +108,14 @@ const makeFakeUsers = num => {
   }
 }
 
-makeFakeOrders(25)
+makeFakeOrders(200)
 // userId
-makeFakeProducts(100)
-makeFakeItems(100)
+makeFakeProducts(200)
+makeFakeItems(200)
 // productId orderId
-makeFakeReviews(300)
+makeFakeReviews(200)
 // userId productId
-makeFakeUsers(50)
+makeFakeUsers(200)
 
 async function Seed() {
   await db.sync({force: true})
@@ -127,14 +127,14 @@ async function Seed() {
   const reviews = await Review.bulkCreate(fakeReviews)
   const users = await User.bulkCreate(fakeUsers)
 
-  const mapProductReview = []
-  products.forEach((product, i) => {
-    for (let j = i * 3; j < i * 3 + 3; j++) {
-      mapProductReview.push(product.addReview(reviews[j]))
-    }
-  })
+  // const mapProductReview = []
+  // products.forEach((product, i) => {
+  //   for (let j = i * 3; j < i * 3 + 3; j++) {
+  //     mapProductReview.push(product.addReview(reviews[j]))
+  //   }
+  // })
 
-  await Promise.all(mapProductReview)
+  // await Promise.all(mapProductReview)
 
   await Promise.all(
     orders.map((order, i) => {
@@ -151,11 +151,11 @@ async function Seed() {
       return item.setProduct(products[i])
     })
   )
-  // await Promise.all(
-  // 	reviews.map((review, i) => {
-  // 		return review.setUser(users[i]);
-  // 	})
-  // );
+  await Promise.all(
+    reviews.map((review, i) => {
+      return review.setUser(users[i])
+    })
+  )
   await Promise.all(
     reviews.map((review, i) => {
       return review.setProduct(products[i])

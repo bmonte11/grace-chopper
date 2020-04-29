@@ -176,12 +176,7 @@ form div {
   max-width: 8em;
 }
 
-/* #products-card {
-
-} */
-
 #products-container {
-  /* margin: 1em; */
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -201,11 +196,6 @@ form div {
   display: flex;
   flex: wrap;
 }
-
-/* #products-card > div {
-  display: flex;
-  flex-direction: column;
-} */
 
 #account-page {
   display: flex;
