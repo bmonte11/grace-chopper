@@ -229,3 +229,10 @@ form div {
   flex-direction: column;
   padding: 20px;
 }
+
+#cart {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: 50px 50px;
+}

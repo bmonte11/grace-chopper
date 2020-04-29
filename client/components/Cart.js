@@ -8,10 +8,24 @@ import {withRouter} from 'react-router-dom'
 class Cart extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      total: 0
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.getTotal = this.getTotal.bind(this)
   }
-  componentDidMount() {
-    this.props.getCart()
+
+  getTotal() {
+    console.log(this.props.cart.items)
+    return this.props.cart.items.reduce(
+      (a, b) => a + b.product.price * b.quantity,
+      0
+    )
+  }
+
+  async componentDidMount() {
+    await this.props.getCart()
+    this.setState({total: this.getTotal()})
   }
 
   handleSubmit(event) {
@@ -28,7 +42,7 @@ class Cart extends Component {
   render() {
     let cart = this.props.cart
     return (
-      <div>
+      <div id="cart">
         <h1>Cart</h1>
         <div className="list-group list-group-sm">
           {!cart.items ? (
@@ -45,10 +59,7 @@ class Cart extends Component {
             })
           )}
         </div>
-        <div className="total">
-          This is the calculation for the total price{' '}
-        </div>
-        <div className="total">Grand Total </div>
+        <div className="total">{`Total: $${this.state.total}`}</div>
         <button type="submit" onClick={this.handleSubmit}>
           Checkout
         </button>
