@@ -108,14 +108,14 @@ const makeFakeUsers = num => {
   }
 }
 
-makeFakeOrders(10)
+makeFakeOrders(200)
 // userId
-makeFakeProducts(10)
-makeFakeItems(10)
+makeFakeProducts(200)
+makeFakeItems(200)
 // productId orderId
-makeFakeReviews(10)
+makeFakeReviews(200)
 // userId productId
-makeFakeUsers(10)
+makeFakeUsers(200)
 
 // console.log(fakeOrders);
 // console.log(fakeProducts);

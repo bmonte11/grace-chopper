@@ -8,7 +8,7 @@ const SingleOrder = ({order}) => {
         <img src={item.product.photo} className="card-img-top" alt="..." />
         <div className="card-body">
           <p className="card-text">{item.product.name}</p>
-          <p>${item.salePrice}</p>
+          <p>${item.salePrice.toFixed(2)}</p>
         </div>
       </div>
     )
