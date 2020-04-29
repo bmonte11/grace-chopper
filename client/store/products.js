@@ -6,10 +6,10 @@ export const setProducts = products => {
   return {type: SET_PRODUCTS, products: products}
 }
 
-export function fetchProducts() {
+export function fetchProducts(pagination) {
   return async function(dispatch) {
     try {
-      const result = await axios.get('/api/products')
+      const result = await axios.post('/api/products', pagination)
       dispatch(setProducts(result.data))
     } catch (err) {
       console.error(err)

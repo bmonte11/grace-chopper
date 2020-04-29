@@ -3,19 +3,15 @@ const {Product} = require('../db/models')
 const {Op} = require('sequelize')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
-  const {page, pageSize} = req.body
-  const offset = page * pageSize
-  const limit = pageSize
+router.post('/', async (req, res, next) => {
   try {
+    console.log('REQ.BODY!!!:', req.body)
+    const {page, pageSize} = req.body
+    const off = page * pageSize
+    const lim = pageSize
     const products = await Product.findAll({
-      limit,
-      offset,
-      where: {
-        stock: {
-          [Op.gt]: 0
-        }
-      }
+      offset: off,
+      limit: lim
     })
     res.status(200).json(products)
   } catch (err) {

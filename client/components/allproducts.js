@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
-import {ListProducts, Paginate} from '.'
+import {ListProducts, Paginate} from './index'
 
 class AllProducts extends Component {
   constructor() {
@@ -15,7 +15,12 @@ class AllProducts extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount() {
-    this.props.getProducts()
+    const pages = {
+      page: this.state.currentPage,
+      pageSize: this.state.productsPerPage
+    }
+    console.log('PAGES!!!:', pages)
+    this.props.getProducts(pages)
   }
 
   handleChange = event => {
@@ -45,7 +50,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getProducts: () => dispatch(fetchProducts())
+    getProducts: pagination => dispatch(fetchProducts(pagination))
   }
 }
 
