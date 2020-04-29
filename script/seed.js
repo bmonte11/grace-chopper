@@ -117,12 +117,6 @@ makeFakeReviews(200)
 // userId productId
 makeFakeUsers(200)
 
-// console.log(fakeOrders);
-// console.log(fakeProducts);
-// console.log(fakeItems);
-// console.log(fakeReviews);
-// console.log(fakeUsers)
-
 async function Seed() {
   await db.sync({force: true})
   console.log('db synced!')
