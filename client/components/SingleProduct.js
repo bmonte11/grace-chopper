@@ -50,7 +50,7 @@ class SingleProduct extends Component {
           </div>
           <div id="single-product-info-right">
             <h2>{product.name}</h2>
-            <h3>{`$${product.price.toFixed(2)}`}</h3>
+            <h3>${Number(product.price).toFixed(2)}</h3>
             <div id="single-product-addtocart">
               <div
                 className="change-quantity"
