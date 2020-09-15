@@ -50,7 +50,7 @@ class Cart extends Component {
         </div>
 
         <div className="total">Grand Total </div>
-        <button
+        {/* <button
           type="button"
           onClick={async () => {
             await axios.get('/api/orders/cart')
@@ -58,7 +58,7 @@ class Cart extends Component {
         >
           {' '}
           On Click
-        </button>
+        </button> */}
         <button type="submit" onClick={this.handleSubmit}>
           Checkout
         </button>
