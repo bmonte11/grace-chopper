@@ -444,10 +444,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -521,27 +517,6 @@ function (_Component) {
       }, "This is the calculation for the total price", ' '), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "total"
       }, "Grand Total "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        onClick:
-        /*#__PURE__*/
-        _asyncToGenerator(
-        /*#__PURE__*/
-        regeneratorRuntime.mark(function _callee() {
-          return regeneratorRuntime.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  _context.next = 2;
-                  return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/orders/cart');
-
-                case 2:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee);
-        }))
-      }, ' ', "On Click"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         onClick: this.handleSubmit
       }, "Checkout"));
@@ -2450,22 +2425,21 @@ function fetchCart() {
                 _ref2 = _context.sent;
                 data = _ref2.data;
                 cart = data;
-                console.log(cart, 'cart in thunk');
                 dispatch(setCart(cart));
-                _context.next = 13;
+                _context.next = 12;
                 break;
 
-              case 10:
-                _context.prev = 10;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](0);
                 console.log(_context.t0);
 
-              case 13:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 10]]);
+        }, _callee, null, [[0, 9]]);
       }));
 
       return function (_x) {
@@ -2524,7 +2498,6 @@ function postToCart(orderItem) {
   );
 }
 function removeItem(itemId) {
-  console.log('itemId in thunk', itemId);
   return (
     /*#__PURE__*/
     function () {
@@ -2603,17 +2576,15 @@ function checkoutGuest(cart) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                console.log('inside thunk checkoutGuest');
-                _context4.next = 3;
+                _context4.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/orders/guest", {
                   status: 'shipping',
                   userId: -1
                 });
 
-              case 3:
+              case 2:
                 response = _context4.sent;
                 newOrder = response.data;
-                console.log(newOrder, 'new order from checkoutGuest');
                 Promise.all(cart.items.map(function (item) {
                   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/items', {
                     salePrice: item.product.price,
@@ -2632,7 +2603,7 @@ function checkoutGuest(cart) {
                 });
                 dispatch(Object(_products__WEBPACK_IMPORTED_MODULE_1__["fetchProducts"])());
 
-              case 8:
+              case 6:
               case "end":
                 return _context4.stop();
             }
@@ -5784,7 +5755,8 @@ function toByteArray (b64) {
     ? validLen - 4
     : validLen
 
-  for (var i = 0; i < len; i += 4) {
+  var i
+  for (i = 0; i < len; i += 4) {
     tmp =
       (revLookup[b64.charCodeAt(i)] << 18) |
       (revLookup[b64.charCodeAt(i + 1)] << 12) |
@@ -5994,7 +5966,7 @@ module.exports = (function() {
 /* WEBPACK VAR INJECTION */(function(global) {/*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <http://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
