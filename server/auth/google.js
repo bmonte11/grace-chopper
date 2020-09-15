@@ -33,6 +33,7 @@ if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: GOOGLE_CALLBACK
   }
+  console.log(googleConfig, 'this should be coming through')
 
   const strategy = new GoogleStrategy(
     googleConfig,
