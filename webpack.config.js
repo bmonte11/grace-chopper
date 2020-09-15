@@ -10,6 +10,9 @@ module.exports = {
     path: __dirname,
     filename: './public/bundle.js'
   },
+  optimization: {
+    minimize: false
+  },
   resolve: {
     extensions: ['.js', '.jsx']
   },
