@@ -44,6 +44,8 @@ router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
+router.use('/google', require('./google'))
+
 router.use(function(req, res, next) {
   if (process.env.NODE_ENV === 'production') {
     const reqType = req.headers['x-forwarded-proto']
@@ -57,5 +59,3 @@ router.use(function(req, res, next) {
     next()
   }
 })
-
-router.use('/google', require('./google'))
