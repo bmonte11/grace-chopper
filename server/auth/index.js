@@ -44,7 +44,7 @@ router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
-router.use('/google', require('./google'))
+router.use('/auth', require('./google'))
 
 router.use(function(req, res, next) {
   if (process.env.NODE_ENV === 'production') {
